@@ -46,21 +46,50 @@
             border: 1px solid #eb7d1e;
         }
         .auth-logo {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: bold;
             color: #eb7d1e;
             margin-bottom: 5px;
             letter-spacing: 1px;
         }
+        .auth-title {
+            font-size: 26px;
+            font-weight: bold;
+            color: #eb7d1e;
+            margin-bottom: 5px;
+        }
+        .auth-subtitle {
+            font-size: 13px;
+            color: #bfa598;
+            margin-bottom: 25px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #4a2a1f;
+            background: #110905;
+            color: white;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .input-group input:focus {
+            border-color: #eb7d1e;
+            outline: none;
+        }
 
         /* Top Balance Card */
         .wallet-card {
-            background: linear-gradient(135deg, #42291d, #361f14);
+            background: linear-gradient(135deg, #42201d, #361f14);
             border-radius: 15px;
             padding: 15px;
             margin-bottom: 12px;
             text-align: center;
-            border: 1px solid #4a2e1f;
+            border: 1px solid #4a2a1f;
         }
         .wallet-title { font-size: 26px; font-weight: bold; color: #ffffff; }
         .wallet-sub { font-size: 12px; color: #bfa598; margin-top: 4px; }
@@ -84,195 +113,109 @@
             cursor: pointer;
             border: none;
             color: #bfa598;
-            font-size: 11px;
-        }
-        .mode-item.active {
-            background: linear-gradient(180deg, #ff8c1a, #e67300);
-            color: white;
+            font-size: 12px;
             font-weight: bold;
         }
+        .mode-item.active {
+            background: #eb7d1e;
+            color: white;
+        }
 
-        /* Time & Period Banner */
-        .time-banner {
-            background: linear-gradient(90deg, #e67300, #361f14);
-            border-radius: 12px;
-            padding: 10px;
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            flex: 1;
+            width: 100%;
+        }
+        .btn-green { background: #eb7d1e; }
+        .auth-footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #bfa598;
+        }
+        .auth-footer span {
+            color: #eb7d1e;
+            cursor: pointer;
+        }
+
+        /* Profile & Layout Utilities */
+        .profile-sec {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-        }
-        .period-info { text-align: left; font-size: 12px; }
-        .timer-display { font-size: 22px; font-weight: bold; letter-spacing: 1px; color: #ffffff; }
-
-        /* Color Buttons Group */
-        .color-row {
-            display: flex;
             justify-content: space-between;
-            gap: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
-        .color-btn {
-            flex: 1; padding: 12px; border: none; border-radius: 6px;
-            color: white; font-weight: bold; font-size: 15px; cursor: pointer;
-        }
-        .bg-green { background-color: #26a96e; }
-        .bg-violet { background-color: #9253f0; }
-        .bg-red { background-color: #f05353; }
-
-        /* Numbers Matrix (0-9) */
-        .numbers-grid {
-            display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
-            background: #22140c; padding: 12px; border-radius: 12px; margin-bottom: 12px;
-        }
-        .num-ball {
-            aspect-ratio: 1; border-radius: 50%; border: none; color: white;
-            font-size: 18px; font-weight: bold; display: flex; align-items: center;
-            justify-content: center; box-shadow: 0 3px 6px rgba(0,0,0,0.4); cursor: pointer;
-        }
-        .ball-red { background: #f05353; }
-        .ball-green { background: #26a96e; }
-        .ball-violet-red { background: linear-gradient(135deg, #9253f0 50%, #f05353 50%); }
-        .ball-violet-green { background: linear-gradient(135deg, #9253f0 50%, #26a96e 50%); }
-
-        /* Scale Switches */
-        .size-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 15px; }
-        .size-btn { flex: 1; padding: 12px; border: none; font-weight: bold; font-size: 16px; color: white; border-radius: 20px; cursor: pointer; }
-        .btn-big { background: #ff9800; }
-        .btn-small { background: #2196f3; }
-
-        /* Interactive Multi-Tabs Framework */
-        .tab-bar { display: flex; justify-content: space-around; background: #22140c; border-radius: 10px 10px 0 0; margin-top: 15px; }
-        .tab-item { flex: 1; padding: 12px; color: #bfa598; font-weight: bold; font-size: 13px; cursor: pointer; }
-        .tab-item.active { color: #ff8c1a; border-bottom: 3px solid #ff8c1a; background: rgba(255,140,26,0.05); }
-        .tab-content { background: #22140c; padding: 10px; border-radius: 0 0 10px 10px; min-height: 150px; }
-
-        table { width: 100%; border-collapse: collapse; font-size: 12px; }
-        th { background-color: #eb7d1e; color: white; padding: 8px; }
-        td { padding: 8px; border-bottom: 1px solid #361f14; }
-        .dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; }
-
-        /* Chart Visual Elements */
-        .chart-row-line { display: flex; align-items: center; justify-content: space-around; padding: 6px 0; border-bottom: 1px solid #361f14; font-size: 11px; }
-        .chart-ball { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; }
-
-        /* Bottom Status Navigation Bar Styling */
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: #1e1008; height: 60px;
-            display: flex; justify-content: space-around; align-items: center;
-            border-top: 1px solid #4a2e1f; z-index: 999;
-        }
-        .nav-btn {
-            background: transparent; border: none; color: #bfa598;
-            font-size: 11px; display: flex; flex-direction: column;
-            align-items: center; cursor: pointer; flex: 1;
-        }
-        .nav-btn.active { color: #eb7d1e; font-weight: bold; }
-        .nav-icon { font-size: 20px; margin-bottom: 2px; }
-
-        /* Universal Standard Forms Elements */
-        input[type="text"], input[type="password"], input[type="number"], select {
-            width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px;
-            border: 1px solid #4a2e1f; background: #22140c; color: white; box-sizing: border-box;
-        }
-        .btn-submit {
-            background: linear-gradient(180deg, #ff8c1a, #e67300);
-            color: white; width: 100%; padding: 12px; border: none;
-            border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px;
-        }
-
-        /* Generic Presentation Panels */
-        .app-panel { display: none; }
-        .app-panel.active { display: block; }
-        .card-view { background: #361f14; border-radius: 12px; padding: 15px; text-align: left; margin-bottom: 15px; border-left: 4px solid #eb7d1e; }
+        .user-meta { display: flex; align-items: center; gap: 10px; }
+        .avatar { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #eb7d1e; }
+        .u-info { text-align: left; }
+        .u-name { font-weight: bold; font-size: 15px; }
+        .u-bal { font-size: 16px; color: #eb7d1e; font-weight: bold; margin-top: 2px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-
-    <div class="auth-screen" id="login-window">
+    <div class="auth-screen">
         <div class="auth-card">
-            <div class="auth-logo">PAKclub Win</div>
-            <p style="color:#bfa598; font-size:12px; margin-bottom:20px;">Secure Access Verification Portal</p>
-            <input type="text" id="login-phone" placeholder="Mobile Number / Player ID" value="03451234567">
-            <input type="password" id="login-pass" placeholder="Password" value="123456">
-            <button class="btn-submit" onclick="bypassAuthentication()">Log In</button>
-            <p style="font-size:13px; margin-top:15px; color:#bfa598;">Don't have an account? <span style="color:#eb7d1e; cursor:pointer; font-weight:bold;" onclick="switchAuthView('signup')">Register Now</span></p>
+            <div class="auth-logo">PAKclub</div>
+            <div class="auth-title">PAKclub Win</div>
+            <div class="auth-subtitle">Secure Access Verification Portal</div>
+            
+            <div class="input-group">
+                <input type="text" placeholder="Mobile Number / Player ID">
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password">
+            </div>
+            
+            <button type="button" class="btn-green" onclick="handleLogin()">Log In</button>
+            
+            <div class="auth-footer">Don't have an account? <span>Register Now</span></div>
         </div>
     </div>
 
-    <div class="auth-screen" id="signup-window" style="display:none;">
-        <div class="auth-card">
-            <div class="auth-logo">Register Hub</div>
-            <p style="color:#bfa598; font-size:12px; margin-bottom:20px;">Create Free Player Account</p>
-            <input type="text" id="reg-phone" placeholder="Enter Mobile Number">
-            <input type="password" id="reg-pass" placeholder="Set Secure Password">
-            <input type="text" id="reg-invite" placeholder="Invitation Code (Optional)">
-            <button class="btn-submit" onclick="bypassAuthentication()">Sign Up & Claim Bonus</button>
-            <p style="font-size:13px; margin-top:15px; color:#bfa598;">Already registered? <span style="color:#eb7d1e; cursor:pointer; font-weight:bold;" onclick="switchAuthView('login')">Login Here</span></p>
+    <div class="container">
+        <div class="profile-sec">
+            <div class="user-meta">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="avatar" alt="User">
+                <div class="u-info">
+                    <div class="u-name">ArriyanRiaz</div>
+                    <div class="u-bal">Rs.0.45</div>
+                </div>
+            </div>
         </div>
-    </div>
 
-
-    <div class="app-panel active" id="panel-home">
         <div class="wallet-card">
-            <div class="wallet-title">Rs.<span id="main-balance">9500.00</span></div>
-            <div class="wallet-sub">💳 Available Trading Balance</div>
+            <div class="wallet-title">Rs.0.45</div>
+            <div class="wallet-sub">Wallet Balance</div>
         </div>
 
         <div class="mode-grid">
-            <button class="mode-item active" id="mode-30s" onclick="switchGameMode(30)">⏱️<br>WinGo 30s</button>
-            <button class="mode-item" id="mode-1m" onclick="switchGameMode(60)">⏱️<br>WinGo 1m</button>
-            <button class="mode-item" id="mode-3m" onclick="switchGameMode(180)">⏱️<br>WinGo 3m</button>
-            <button class="mode-item" id="mode-5m" onclick="switchGameMode(300)">⏱️<br>WinGo 5m</button>
+            <button class="mode-item active">WinGo 30sec</button>
+            <button class="mode-item">WinGo 1 Min</button>
+            <button class="mode-item">WinGo 3 Min</button>
+            <button class="mode-item">WinGo 5 Min</button>
         </div>
+        
+        <p style="color: #bfa598; font-size: 14px; margin-top: 40px;">Dashboard Loaded Successfully.</p>
+    </div>
 
-        <div class="time-banner">
-            <div class="period-info">
-                <span style="color:#bfa598; font-size:11px;">Period ID</span><br>
-                <strong id="display-period" style="font-size:14px;">2026061310050</strong>
-            </div>
-            <div class="countdown-box" style="text-align:right;">
-                <span style="color:#bfa598; font-size:11px;">Time remaining</span>
-                <div class="timer-display" id="clock-display">00:30</div>
-            </div>
-        </div>
+    <script>
+    function handleLogin() {
+        var authScreen = document.querySelector('.auth-screen');
+        if (authScreen) {
+            authScreen.style.style.transition = "opacity 0.3s ease";
+            authScreen.style.opacity = "0";
+            setTimeout(function() {
+                authScreen.style.display = 'none';
+            }, 300);
+        }
+    }
+    </script>
 
-        <div class="color-row">
-            <button class="color-btn bg-green" onclick="triggerBetSetup('Green')">Green</button>
-            <button class="color-btn bg-violet" onclick="triggerBetSetup('Violet')">Violet</button>
-            <button class="color-btn bg-red" onclick="triggerBetSetup('Red')">Red</button>
-        </div>
-
-        <div class="numbers-grid">
-            <button class="num-ball ball-violet-red" onclick="triggerBetSetup('0')">0</button>
-            <button class="num-ball ball-green" onclick="triggerBetSetup('1')">1</button>
-            <button class="num-ball ball-red" onclick="triggerBetSetup('2')">2</button>
-            <button class="num-ball ball-green" onclick="triggerBetSetup('3')">3</button>
-            <button class="num-ball ball-red" onclick="triggerBetSetup('4')">4</button>
-            <button class="num-ball ball-violet-green" onclick="triggerBetSetup('5')">5</button>
-            <button class="num-ball ball-red" onclick="triggerBetSetup('6')">6</button>
-            <button class="num-ball ball-green" onclick="triggerBetSetup('7')">7</button>
-            <button class="num-ball ball-red" onclick="triggerBetSetup('8')">8</button>
-            <button class="num-ball ball-green" onclick="triggerBetSetup('9')">9</button>
-        </div>
-
-        <div class="size-row">
-            <button class="size-btn btn-big" onclick="triggerBetSetup('Big')">Big</button>
-            <button class="size-btn btn-small" onclick="triggerBetSetup('Small')">Small</button>
-        </div>
-        <div id="bet-status-label" style="color:#ff8c1a; font-weight:bold; margin-bottom:10px;"></div>
-
-        <div class="tab-bar">
-            <div class="tab-item active" id="tab-game-hist" onclick="toggleInterfaceTab('history')">Game history</div>
-            <div class="tab-item" id="tab-chart" onclick="toggleInterfaceTab('chart')">Chart</div>
-            <div class="tab-item" id="tab-my-hist" onclick="toggleInterfaceTab('my-history')">My history</div>
-        </div>
-        <div class="tab-content" id="data-view-container">
-            <table>
-                <thead><tr><th>Period</th><th>Number</th><th>Big Small</th><th>Color</th></tr></thead>
-                <tbody id="history-rows">
-                    <tr><td>...0054</td><td
-                                            
+</body>
+</html>
