@@ -10,58 +10,58 @@
             background-color: #22140c;
             color: white;
             text-align: center;
-            margin: 0; padding: 0; padding-bottom: 70px;
+            margin: 0; padding: 0; padding-bottom: 30px;
         }
         .container {
-            max-width: 450px; margin: auto; background: #2c1a10;
-            min-height: 100vh; padding: 12px; box-sizing: border-box;
+            max-width: 450px; margin: auto; background: #22140c;
+            min-height: 100vh; padding: 15px; box-sizing: border-box;
         }
-        /* LOGIN OVERLAY */
-        .auth-screen {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: #22140c; z-index: 9999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;
-        }
-        .auth-card {
-            background: #2c1a10; width: 100%; max-width: 380px;
-            padding: 25px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.7); border: 1px solid #eb7d1e;
-        }
-        .auth-logo { font-size: 28px; font-weight: bold; color: #eb7d1e; margin-bottom: 5px; }
+        /* Top Balance Card */
         .wallet-card {
-            background: linear-gradient(135deg, #42291d, #361f14);
-            border-radius: 15px; padding: 15px; margin-bottom: 12px; border: 1px solid #4a2e1f;
+            background: linear-gradient(135deg, #3a2214, #2c1a10);
+            border-radius: 20px; padding: 20px; margin-bottom: 20px; 
+            border: 1px solid #4a2e1f; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
-        .wallet-title { font-size: 26px; font-weight: bold; color: #ffffff; }
-        .mode-grid { display: flex; justify-content: space-between; background: #22140c; border-radius: 12px; padding: 5px; gap: 5px; margin-bottom: 12px; }
-        .mode-item { flex: 1; background: transparent; padding: 8px 2px; border-radius: 10px; color: #bfa598; font-size: 11px; border: none; }
+        .wallet-title { font-size: 32px; font-weight: bold; color: #ffffff; margin: 0; }
+        .wallet-sub { font-size: 13px; color: #bfa598; margin-top: 5px; }
+        
+        .action-btns { display: flex; gap: 15px; margin-top: 15px; }
+        .btn-action { flex: 1; padding: 12px; border-radius: 25px; border: none; font-weight: bold; font-size: 15px; cursor: pointer; }
+        .btn-withdraw { background-color: #d9534f; color: white; }
+        .btn-deposit { background-color: #2baf66; color: white; }
+
+        /* Game Modes Switches Grid */
+        .mode-grid { display: flex; justify-content: space-between; background: #1b0f08; border-radius: 15px; padding: 6px; gap: 6px; margin-bottom: 20px; }
+        .mode-item { flex: 1; background: transparent; padding: 12px 5px; border-radius: 12px; color: #bfa598; font-size: 13px; border: none; cursor: pointer; }
         .mode-item.active { background: linear-gradient(180deg, #ff8c1a, #e67300); color: white; font-weight: bold; }
-        input[type="text"], input[type="password"] {
-            width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px;
-            border: 1px solid #4a2e1f; background: #22140c; color: white; box-sizing: border-box;
-        }
-        .btn-submit {
-            background: linear-gradient(180deg, #ff8c1a, #e67300);
-            color: white; width: 100%; padding: 12px; border: none;
-            border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px;
-        }
+
+        /* Status & Timer Box */
+        .status-box { background: #ff8c1a; border-radius: 15px; padding: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; color: white; }
+        .status-left { text-align: left; }
+        .status-title { font-size: 15px; font-weight: bold; }
+        .status-desc { font-size: 12px; opacity: 0.9; margin-top: 3px; }
+        .timer-box { font-size: 24px; font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 12px; border-radius: 8px; }
+
+        /* Big Small Buttons */
+        .bs-grid { display: flex; gap: 12px; margin-bottom: 20px; }
+        .btn-bs { flex: 1; padding: 15px; border-radius: 30px; font-size: 18px; font-weight: bold; border: none; color: white; cursor: pointer; }
+        .btn-big { background: linear-gradient(180deg, #ff9f43, #ff8c1a); }
+        .btn-small { background: linear-gradient(180deg, #2d9cdb, #219653); }
+
+        /* Welcome Banner */
+        .welcome-msg { color: #ff8c1a; font-weight: bold; font-size: 16px; margin-top: 25px; background: #2c1a10; padding: 12px; border-radius: 10px; border-left: 4px solid #ff8c1a; }
     </style>
 </head>
 <body>
 
-    <div class="auth-screen" id="login-panel">
-        <div class="auth-card">
-            <div class="auth-logo">PAKclub Win</div>
-            <p style="color:#bfa598; font-size:12px; margin-bottom:20px;">Secure Access Verification Portal</p>
-            <input type="text" placeholder="Mobile Number / Player ID" value="03451234567">
-            <input type="password" placeholder="Password" value="123456">
-            <button class="btn-submit" onclick="khloDashboard()">Log In</button>
-        </div>
-    </div>
-
     <div class="container">
         <div class="wallet-card">
             <div class="wallet-title">Rs.9500.00</div>
-            <p style="font-size: 12px; color: #bfa598;">Available Trading Balance</p>
+            <div class="wallet-sub">Available Trading Balance</div>
+            <div class="action-btns">
+                <button class="btn-action btn-withdraw">Withdraw</button>
+                <button class="btn-action btn-deposit">Deposit</button>
+            </div>
         </div>
 
         <div class="mode-grid">
@@ -69,17 +69,39 @@
             <button class="mode-item">⏱️<br>WinGo 1m</button>
             <button class="mode-item">⏱️<br>WinGo 3m</button>
         </div>
+
+        <div class="status-box">
+            <div class="status-left">
+                <div class="status-title">WinGo 30s Active</div>
+                <div class="status-desc">Period: 20260613100055</div>
+            </div>
+            <div class="timer-box" id="countdown">00:23</div>
+        </div>
+
+        <div class="bs-grid">
+            <button class="btn-bs btn-big">Big</button>
+            <button class="btn-bs btn-small">Small</button>
+        </div>
         
-        <p style="color:#ff8c1a; font-weight:bold; margin-top:50px;">🎉 Welcome to Dashboard! Game is Active.</p>
+        <div class="welcome-msg">
+            🎉 Welcome to Dashboard! System is running active.
+        </div>
     </div>
 
     <script>
-        function khloDashboard() {
-            var screen = document.getElementById('login-panel');
-            if(screen) {
-                screen.style.display = 'none';
-            }
+        function startTimer() {
+            var time = 23;
+            setInterval(function() {
+                time--;
+                if(time < 0) {
+                    time = 30; // 30 seconds loop reset
+                }
+                var seconds = time < 10 ? "0" + time : time;
+                document.getElementById("countdown").innerHTML = "00:" + seconds;
+            }, 1000);
         }
+        window.onload = startTimer;
     </script>
+
 </body>
 </html>
