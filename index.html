@@ -3,93 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAKclub Official Gaming Hub</title>
+    <title>PAKclub Official WinGo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #22140c;
             color: white;
             text-align: center;
-            margin: 0; padding: 0; padding-bottom: 80px;
+            margin: 0; padding: 0; padding-bottom: 60px;
         }
         .container {
-            max-width: 450px; margin: auto; background: #2c1a10;
-            min-height: 100vh; padding: 15px; box-sizing: border-box; position: relative;
+            max-width: 450px; margin: auto; background: #22140c;
+            min-height: 100vh; padding: 15px; box-sizing: border-box;
         }
         
-        /* AUTH SCREEN SYSTEMS */
+        /* AUTH SCREEN */
         .auth-screen {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: #22140c; z-index: 9999;
             display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;
-            transition: opacity 0.3s ease;
         }
         .auth-card {
             background: #2c1a10; width: 100%; max-width: 380px;
             padding: 25px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.7); border: 1px solid #eb7d1e;
         }
         .auth-logo { font-size: 28px; font-weight: bold; color: #eb7d1e; margin-bottom: 5px; }
-        
-        /* Wallet Card Setup */
+
+        /* Wallet Header */
         .wallet-card {
-            background: linear-gradient(135deg, #42291d, #361f14);
+            background: linear-gradient(135deg, #3a2214, #2c1a10);
             border-radius: 20px; padding: 20px; margin-bottom: 15px; 
             border: 1px solid #4a2e1f; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
-        .wallet-title { font-size: 32px; font-weight: bold; color: #ffffff; margin: 0; }
+        .wallet-title { font-size: 34px; font-weight: bold; color: #ffffff; margin: 0; }
         .wallet-sub { font-size: 13px; color: #bfa598; margin-top: 5px; }
         
         .action-btns { display: flex; gap: 15px; margin-top: 15px; }
         .btn-action { flex: 1; padding: 12px; border-radius: 25px; border: none; font-weight: bold; font-size: 15px; cursor: pointer; color: white; }
-        .btn-withdraw { background: #d9534f; }
-        .btn-deposit { background: #2baf66; }
+        .btn-withdraw { background-color: #d9534f; }
+        .btn-deposit { background-color: #2baf66; }
 
-        /* Game Modes Switches Grid */
+        /* Game Modes */
         .mode-grid { display: flex; justify-content: space-between; background: #1b0f08; border-radius: 15px; padding: 6px; gap: 6px; margin-bottom: 15px; }
-        .mode-item { flex: 1; background: transparent; padding: 12px 5px; border-radius: 12px; color: #bfa598; font-size: 13px; border: none; cursor: pointer; }
+        .mode-item { flex: 1; background: transparent; padding: 12px 5px; border-radius: 12px; color: #bfa598; font-size: 13px; border: none; }
         .mode-item.active { background: linear-gradient(180deg, #ff8c1a, #e67300); color: white; font-weight: bold; }
 
-        /* Status & Timer Box */
+        /* Timer Box */
         .status-box { background: #ff8c1a; border-radius: 15px; padding: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; color: white; }
         .status-left { text-align: left; }
         .status-title { font-size: 15px; font-weight: bold; }
         .status-desc { font-size: 12px; opacity: 0.9; margin-top: 3px; }
-        .timer-box { font-size: 24px; font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 12px; border-radius: 8px; letter-spacing: 1px; }
+        .timer-box { font-size: 26px; font-weight: bold; background: rgba(0,0,0,0.25); padding: 5px 15px; border-radius: 8px; font-family: monospace; }
 
-        /* Color Options Grid */
+        /* Colors Grid */
         .color-grid { display: flex; gap: 10px; margin-bottom: 15px; }
-        .btn-color { flex: 1; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; border: none; color: white; cursor: pointer; }
+        .btn-color { flex: 1; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; border: none; color: white; cursor: pointer; }
         .bg-green { background-color: #2baf66; }
         .bg-violet { background-color: #9b51e0; }
         .bg-red { background-color: #ff4d4d; }
 
-        /* Numbers Grid Setup */
+        /* Numbers Balls */
         .numbers-container { background: #1b0f08; border-radius: 15px; padding: 15px; margin-bottom: 15px; }
         .numbers-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
         .num-ball {
             width: 48px; height: 48px; border-radius: 50%; font-size: 18px; font-weight: bold;
             display: flex; align-items: center; justify-content: center; margin: auto; color: white; cursor: pointer; border: none;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
         .ball-0 { background: linear-gradient(135deg, #ff4d4d 50%, #9b51e0 50%); }
         .ball-5 { background: linear-gradient(135deg, #2baf66 50%, #9b51e0 50%); }
         .ball-red { background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff4d4d); }
         .ball-green { background: radial-gradient(circle at 30% 30%, #2ecc71, #2baf66); }
 
-        /* Big Small Buttons */
-        .bs-grid { display: flex; gap: 12px; margin-bottom: 20px; }
-        .btn-bs { flex: 1; padding: 14px; border-radius: 30px; font-size: 18px; font-weight: bold; border: none; color: white; cursor: pointer; }
+        /* Big Small */
+        .bs-grid { display: flex; gap: 12px; margin-bottom: 15px; }
+        .btn-bs { flex: 1; padding: 15px; border-radius: 30px; font-size: 18px; font-weight: bold; border: none; color: white; cursor: pointer; }
         .btn-big { background: linear-gradient(180deg, #ff9f43, #ff8c1a); }
         .btn-small { background: linear-gradient(180deg, #2d9cdb, #3498db); }
 
-        /* Financial Overlay Panels */
+        /* Modals Overlay */
         .popup-modal {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.8); z-index: 10000; display: none;
+            background: rgba(0,0,0,0.85); z-index: 10000; display: none;
             align-items: center; justify-content: center; padding: 20px;
         }
         .popup-card {
-            background: #2c1a10; width: 100%; max-width: 380px; padding: 20px;
+            background: #2c1a10; width: 100%; max-width: 380px; padding: 22px;
             border-radius: 15px; border: 1px solid #ff8c1a; text-align: left;
         }
         input[type="text"], input[type="number"], select {
@@ -102,15 +101,14 @@
             border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px;
         }
 
-        /* History Table Section */
-        .history-section { background: #1b0f08; border-radius: 15px; padding: 12px; text-align: left; }
-        .history-tab { background: #ff8c1a; color: white; font-weight: bold; display: inline-block; padding: 8px 16px; border-radius: 8px 8px 0 0; font-size: 14px; }
-        table { width: 100%; border-collapse: collapse; text-align: center; margin-top: 5px; font-size: 13px; }
-        th { background-color: #ff8c1a; color: white; padding: 10px; }
+        /* History */
+        .history-section { background: #1b0f08; border-radius: 15px; padding: 12px; }
+        .history-tab { background: #ff8c1a; color: white; font-weight: bold; display: inline-block; padding: 8px 20px; border-radius: 8px 8px 0 0; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; text-align: center; font-size: 14px; }
         td { padding: 12px 8px; border-bottom: 1px solid #2c1a10; color: #bfa598; font-weight: bold; }
         .txt-red { color: #ff4d4d; }
         .txt-green { color: #2baf66; }
-        .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 2px; }
+        .dot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin: 0 3px; }
         .bg-v { background-color: #9b51e0; }
         .bg-r { background-color: #ff4d4d; }
         .bg-g { background-color: #2baf66; }
@@ -122,20 +120,19 @@
         <div class="auth-card">
             <div class="auth-logo">PAKclub Win</div>
             <p style="color:#bfa598; font-size:12px; margin-bottom:20px;">Secure Access Verification Portal</p>
-            <input type="text" placeholder="Mobile Number / Player ID" value="03451234567">
-            <input type="password" placeholder="Password" value="123456">
-            <button class="btn-submit" onclick="unlockMainHub()">Log In</button>
+            <input type="text" id="user-login-id" placeholder="Mobile Number / Player ID" value="03459785262">
+            <input type="password" placeholder="Password" value="••••••••••••">
+            <button class="btn-submit" onclick="unlockDashboard()">Log In</button>
         </div>
     </div>
 
     <div class="container">
-        
         <div class="wallet-card">
             <div class="wallet-title">Rs.<span id="wallet-funds">9500.00</span></div>
             <div class="wallet-sub">Available Trading Balance</div>
             <div class="action-btns">
-                <button class="btn-action btn-withdraw" onclick="openGateWindow('withdraw')">Withdraw</button>
-                <button class="btn-action btn-deposit" onclick="openGateWindow('deposit')">Deposit</button>
+                <button class="btn-action btn-withdraw" onclick="openWindow('withdraw')">Withdraw</button>
+                <button class="btn-action btn-deposit" onclick="openWindow('deposit')">Deposit</button>
             </div>
         </div>
 
@@ -148,209 +145,216 @@
         <div class="status-box">
             <div class="status-left">
                 <div class="status-title">WinGo 30s Running</div>
-                <div class="status-desc">Period: <span id="current-period">2026061310055</span></div>
+                <div class="status-desc">Period: <span id="current-period">2026061310059</span></div>
             </div>
             <div class="timer-box" id="countdown">00:30</div>
         </div>
 
         <div class="color-grid">
-            <button class="btn-color bg-green" onclick="placeTradeAction('Green')">Green</button>
-            <button class="btn-color bg-violet" onclick="placeTradeAction('Violet')">Violet</button>
-            <button class="btn-color bg-red" onclick="placeTradeAction('Red')">Red</button>
+            <button class="btn-color bg-green" onclick="openBetSetup('Green')">Green</button>
+            <button class="btn-color bg-violet" onclick="openBetSetup('Violet')">Violet</button>
+            <button class="btn-color bg-red" onclick="openBetSetup('Red')">Red</button>
         </div>
 
         <div class="numbers-container">
             <div class="numbers-grid">
-                <button class="num-ball ball-0" onclick="placeTradeAction('0')">0</button>
-                <button class="num-ball ball-green" onclick="placeTradeAction('1')">1</button>
-                <button class="num-ball ball-red" onclick="placeTradeAction('2')">2</button>
-                <button class="num-ball ball-green" onclick="placeTradeAction('3')">3</button>
-                <button class="num-ball ball-red" onclick="placeTradeAction('4')">4</button>
-                <button class="num-ball ball-5" onclick="placeTradeAction('5')">5</button>
-                <button class="num-ball ball-red" onclick="placeTradeAction('6')">6</button>
-                <button class="num-ball ball-green" onclick="placeTradeAction('7')">7</button>
-                <button class="num-ball ball-red" onclick="placeTradeAction('8')">8</button>
-                <button class="num-ball ball-green" onclick="placeTradeAction('9')">9</button>
+                <button class="num-ball ball-0" onclick="openBetSetup('0')">0</button>
+                <button class="num-ball ball-green" onclick="openBetSetup('1')">1</button>
+                <button class="num-ball ball-red" onclick="openBetSetup('2')">2</button>
+                <button class="num-ball ball-green" onclick="openBetSetup('3')">3</button>
+                <button class="num-ball ball-red" onclick="openBetSetup('4')">4</button>
+                <button class="num-ball ball-5" onclick="openBetSetup('5')">5</button>
+                <button class="num-ball ball-red" onclick="openBetSetup('6')">6</button>
+                <button class="num-ball ball-green" onclick="openBetSetup('7')">7</button>
+                <button class="num-ball ball-red" onclick="openBetSetup('8')">8</button>
+                <button class="num-ball ball-green" onclick="openBetSetup('9')">9</button>
             </div>
         </div>
 
         <div class="bs-grid">
-            <button class="btn-bs btn-big" onclick="placeTradeAction('Big')">Big</button>
-            <button class="btn-bs btn-small" onclick="placeTradeAction('Small')">Small</button>
+            <button class="btn-bs btn-big" onclick="openBetSetup('Big')">Big</button>
+            <button class="btn-bs btn-small" onclick="openBetSetup('Small')">Small</button>
         </div>
-        <div id="staked-notif" style="color:#ff8c1a; font-weight:bold; margin-bottom:15px; font-size:14px;"></div>
+        <div id="active-bet-banner" style="color:#ff8c1a; font-weight:bold; margin-bottom:15px; font-size:14px; min-height:18px;"></div>
 
-        <div class="history-tab">Game history</div>
+        <div style="text-align: left;"><div class="history-tab">Game history</div></div>
         <div class="history-section">
             <table>
                 <tbody id="game-history-body">
-                    <tr><td>...0054</td><td class="txt-red">2</td><td>Small</td><td><span class="dot bg-r"></span></td></tr>
-                    <tr><td>...0053</td><td style="color:#9b51e0;">5</td><td>Big</td><td><span class="dot bg-g"></span><span class="dot bg-v"></span></td></tr>
-                    <tr><td>...0052</td><td class="txt-green">9</td><td>Big</td><td><span class="dot bg-g"></span></td></tr>
+                    <tr><td>...0058</td><td class="txt-green">1</td><td>Small</td><td><span class="dot bg-g"></span></td></tr>
+                    <tr><td>...0057</td><td class="txt-green">9</td><td>Big</td><td><span class="dot bg-g"></span></td></tr>
+                    <tr><td>...0056</td><td class="txt-red">6</td><td>Big</td><td><span class="dot bg-r"></span></td></tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+    <div class="popup-modal" id="modal-bet">
+        <div class="popup-card">
+            <h3 style="color:#ff8c1a; margin-top:0; margin-bottom:5px;">Join WinGo Trade</h3>
+            <p style="margin:0 0 15px 0; font-size:13px; color:#bfa598;">Selection Asset: <span id="popup-bet-target" style="font-weight:bold; color:white;">None</span></p>
+            <label>Select Multiplier Amount (Rs.):</label>
+            <select id="bet-amount-select">
+                <option value="100">Rs. 100</option>
+                <option value="500">Rs. 500</option>
+                <option value="1000">Rs. 1000</option>
+                <option value="5000">Rs. 5000</option>
+            </select>
+            <button class="btn-submit" onclick="confirmPlayerBet()">Confirm Order stake</button>
+            <button class="btn-submit" style="background:#555; margin-top:5px;" onclick="closeWindow('bet')">Cancel</button>
+        </div>
+    </div>
+
     <div class="popup-modal" id="modal-deposit">
         <div class="popup-card">
-            <h3 style="color:#2baf66; margin-top:0;">Secure Deposit Portal</h3>
-            <label>Select Official Gateway Account:</label>
-            <select id="deposit-vendor">
-                <option value="ep">Easypaisa (Zaid Riaz - 03459784947)</option>
-                <option value="jc">JazzCash (Mehar Ali - 03454357485)</option>
+            <h3 style="color:#2baf66; margin-top:0;">Secure Account Deposit</h3>
+            <label>Gateway Target Vendor:</label>
+            <select id="deposit-method">
+                <option value="Easypaisa (Zaid Riaz - 03459784947)">Easypaisa (Zaid Riaz - 03459784947)</option>
+                <option value="JazzCash (Mehar Ali - 03454357485)">JazzCash (Mehar Ali - 03454357485)</option>
             </select>
-            <label>Deposit Amount (Rs.):</label>
-            <input type="number" id="dep-amount" placeholder="Enter amount to add" value="1000">
-            <label>Transaction TRID / Reference ID (11 Digits):</label>
-            <input type="text" id="dep-trid" placeholder="Enter TRID Number">
-            <button class="btn-submit" style="background:#2baf66;" onclick="executeDepositFunds()">Confirm Deposit</button>
-            <button class="btn-submit" style="background:#555; margin-top:5px;" onclick="closeGateWindow('deposit')">Cancel</button>
+            <label>Amount to Load (Rs.):</label>
+            <input type="number" id="dep-val" value="2000">
+            <label>Reference Transaction TRID (11 Digits):</label>
+            <input type="text" id="dep-tx" placeholder="Enter TRID Token Number">
+            <button class="btn-submit" style="background:#2baf66;" onclick="submitDeposit()">Submit Request</button>
+            <button class="btn-submit" style="background:#555; margin-top:5px;" onclick="closeWindow('deposit')">Back</button>
         </div>
     </div>
 
     <div class="popup-modal" id="modal-withdraw">
         <div class="popup-card">
-            <h3 style="color:#d9534f; margin-top:0;">Secure Withdrawal Portal</h3>
-            <label>Select Payout Option:</label>
-            <select>
-                <option>Easypaisa App Account</option>
-                <option>JazzCash App Account</option>
+            <h3 style="color:#d9534f; margin-top:0;">Secure Payout Outflow</h3>
+            <label>Target Channel Mode:</label>
+            <select id="withdraw-method">
+                <option value="Easypaisa">Easypaisa Wallet</option>
+                <option value="JazzCash">JazzCash Wallet</option>
             </select>
-            <label>Withdraw Amount (Rs.):</label>
-            <input type="number" id="with-amount" placeholder="Enter amount to extract" value="500">
-            <label>Recipient Target Mobile Account Number:</label>
-            <input type="text" placeholder="e.g. 0345XXXXXXX">
-            <button class="btn-submit" style="background:#d9534f;" onclick="executeWithdrawFunds()">Request Cashout</button>
-            <button class="btn-submit" style="background:#555; margin-top:5px;" onclick="closeGateWindow('withdraw')">Cancel</button>
+            <label>Withdraw Outflow Capital (Rs.):</label>
+            <input type="number" id="with-val" value="1000">
+            <label>Receiver Target Cell Number Account:</label>
+            <input type="text" id="with-account" placeholder="e.g. 0345XXXXXXX">
+            <button class="btn-submit" style="background:#d9534f;" onclick="submitWithdraw()">Request Outflow</button>
+            <button class="btn-submit" style="background:#555; margin-top:5px;" onclick="closeWindow('withdraw')">Back</button>
         </div>
     </div>
 
-    <audio id="beep-sound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" preload="auto"></audio>
-
     <script>
-        let currentFunds = 9500.00;
-        let activePeriod = 2026061310055;
-        let clockTimerValue = 30;
-        let activePlayerBet = null;
-        let stakedMoneyVolume = 0;
+        let walletFunds = 9500.00;
+        let runningPeriod = 2026061310059;
+        let clockTimer = 30;
+        let playerID = "03459785262";
+        
+        let pendingBetAsset = null;
+        let activeBetSelection = null;
+        let activeBetCash = 0;
 
-        function unlockMainHub() {
-            var screen = document.getElementById('gate-login');
-            if(screen) screen.style.display = 'none';
+        function unlockDashboard() {
+            playerID = document.getElementById('user-login-id').value || "GuestPlayer";
+            document.getElementById('gate-login').style.display = 'none';
         }
 
-        function openGateWindow(target) {
-            document.getElementById('modal-' + target).style.display = 'flex';
+        function openWindow(id) { document.getElementById('modal-' + id).style.display = 'flex'; }
+        function closeWindow(id) { document.getElementById('modal-' + id).style.display = 'none'; }
+
+        function submitDeposit() {
+            let v = parseFloat(document.getElementById('dep-val').value);
+            let tx = document.getElementById('dep-tx').value.trim();
+            let method = document.getElementById('deposit-method').value;
+            if(!v || tx==="") { alert("Please enter valid amount and TRID."); return; }
+            
+            walletFunds += v;
+            document.getElementById('wallet-funds').innerText = walletFunds.toFixed(2);
+            closeWindow('deposit');
+            
+            // ADMIN LEDGER ALERT LOGIC
+            alert(`📌 DEPOSIT REQUEST SENT!\nPlayer: ${playerID}\nAmount: Rs. ${v}\nMethod: ${method}\nTRID: ${tx}\n\nCheck your merchant account for confirmation!`);
         }
 
-        function closeGateWindow(target) {
-            document.getElementById('modal-' + target).style.display = 'none';
+        function submitWithdraw() {
+            let v = parseFloat(document.getElementById('with-val').value);
+            let acc = document.getElementById('with-account').value.trim();
+            let method = document.getElementById('withdraw-method').value;
+            if(!v || acc==="") { alert("Please fill all details."); return; }
+            if(v > walletFunds) { alert("Insufficient funds."); return; }
+            
+            walletFunds -= v;
+            document.getElementById('wallet-funds').innerText = walletFunds.toFixed(2);
+            closeWindow('withdraw');
+            
+            // ADMIN LEDGER ALERT LOGIC
+            alert(`📌 WITHDRAWAL REQUEST LOGGED!\nPlayer: ${playerID}\nAmount: Rs. ${v}\nSend to: ${method} (${acc})\n\nPlease transfer Rs. ${v} manually from your app.`);
         }
 
-        function executeDepositFunds() {
-            let amt = parseFloat(document.getElementById('dep-amount').value);
-            let trid = document.getElementById('dep-trid').value.trim();
-            if(!amt || trid === "") { alert("Please input valid amount and transaction reference ID token."); return; }
-            currentFunds += amt;
-            document.getElementById('wallet-funds').innerText = currentFunds.toFixed(2);
-            closeGateWindow('deposit');
-            alert("✅ Deposit Successfully Approved! Rs. " + amt + " added to your wallet.");
+        function openBetSetup(selection) {
+            pendingBetAsset = selection;
+            document.getElementById('popup-bet-target').innerText = selection;
+            openWindow('bet');
         }
 
-        function executeWithdrawFunds() {
-            let amt = parseFloat(document.getElementById('with-amount').value);
-            if(!amt || amt > currentFunds) { alert("Insufficient or invalid withdrawal request balance."); return; }
-            currentFunds -= amt;
-            document.getElementById('wallet-funds').innerText = currentFunds.toFixed(2);
-            closeGateWindow('withdraw');
-            alert("✅ Withdrawal Request Logged! Rs. " + amt + " will transfer to your account shortly.");
+        function confirmPlayerBet() {
+            let amt = parseInt(document.getElementById('bet-amount-select').value);
+            if(amt > walletFunds) { alert("Inadequate balance."); return; }
+            
+            activeBetSelection = pendingBetAsset;
+            activeBetCash = amt;
+            walletFunds -= amt;
+            
+            document.getElementById('wallet-funds').innerText = walletFunds.toFixed(2);
+            document.getElementById('active-bet-banner').innerText = `Staked Asset: [${activeBetSelection}] | Capital: Rs. ${activeBetCash}`;
+            closeWindow('bet');
         }
 
-        function placeTradeAction(selection) {
-            let amtInput = prompt("Target Stake Selection: " + selection + "\nEnter Betting Capital Amount (Min Rs. 10):", "100");
-            if(!amtInput) return;
-            let stakedCash = parseInt(amtInput);
-
-            if(isNaN(stakedCash) || stakedCash < 10) { alert("Minimum trade requires Rs. 10."); return; }
-            if(stakedCash > currentFunds) { alert("Inadequate trading wallet balance."); return; }
-
-            activePlayerBet = selection;
-            stakedMoneyVolume = stakedCash;
-            currentFunds -= stakedCash;
-            document.getElementById('wallet-funds').innerText = currentFunds.toFixed(2);
-            document.getElementById('staked-notif').innerText = "Staked Asset: [" + selection + "] for Rs. " + stakedMoneyVolume;
-        }
-
-        // BACKGROUND AUTOMATIC SYSTEM CYCLE RUNNER ENGINE
+        // GAME TIMING AND AUTO-GAMING ENGINE
         setInterval(function() {
-            if(clockTimerValue <= 0) {
-                clockTimerValue = 30;
-                activePeriod++;
-                document.getElementById('current-period').innerText = activePeriod;
-                processSystemCycleEvaluation();
+            if(clockTimer <= 0) {
+                clockTimer = 30;
+                runningPeriod++;
+                document.getElementById('current-period').innerText = runningPeriod;
+                evaluateGameOutcome();
             } else {
-                clockTimerValue--;
+                clockTimer--;
             }
-
-            if(clockTimerValue <= 3) {
-                try { document.getElementById('beep-sound').play(); } catch(e){}
-            }
-
-            let secs = clockTimerValue < 10 ? "0" + clockTimerValue : clockTimerValue;
-            document.getElementById('countdown').innerText = "00:" + secs;
+            let formatSeconds = clockTimer < 10 ? "0" + clockTimer : clockTimer;
+            document.getElementById('countdown').innerText = "00:" + formatSeconds;
         }, 1000);
 
-        function processSystemCycleEvaluation() {
-            let randomLuckyNum = Math.floor(Math.random() * 10);
-            let sizeMetric = (randomLuckyNum >= 5) ? 'Big' : 'Small';
-            let colorMetric = 'Green';
+        function evaluateGameOutcome() {
+            let luckyDigit = Math.floor(Math.random() * 10);
+            let sizeFactor = (luckyDigit >= 5) ? 'Big' : 'Small';
+            let colorFactor = 'Green';
 
-            if([2,4,6,8].includes(randomLuckyNum)) colorMetric = 'Red';
-            if([0,5].includes(randomLuckyNum)) colorMetric = 'Violet';
+            if([2,4,6,8].includes(luckyDigit)) colorFactor = 'Red';
+            if([0,5].includes(luckyDigit)) colorFactor = 'Violet';
 
-            if(activePlayerBet !== null) {
-                let userVictory = false;
-                if(activePlayerBet === String(randomLuckyNum) || activePlayerBet === sizeMetric || activePlayerBet === colorMetric) {
-                    let factor = (isNaN(activePlayerBet)) ? 1.95 : 8.5;
-                    let payoutReturn = stakedMoneyVolume * factor;
-                    currentFunds += payoutReturn;
-                    userVictory = true;
-                    alert("🎉 Victory! Complete Target Match +Rs. " + payoutReturn.toFixed(2));
+            if(activeBetSelection !== null) {
+                if(activeBetSelection === String(luckyDigit) || activeBetSelection === sizeFactor || activeBetSelection === colorFactor) {
+                    let oddRate = (isNaN(activeBetSelection)) ? 1.95 : 8.5;
+                    let profitPayout = activeBetCash * oddRate;
+                    walletFunds += profitPayout;
+                    alert(`🎉 WIN! Result: ${luckyDigit} (${sizeFactor}). +Rs. ${profitPayout.toFixed(2)} added!`);
+                } else {
+                    alert(`❌ LOST! Result was: ${luckyDigit} (${sizeFactor}).`);
                 }
-                activePlayerBet = null;
-                stakedMoneyVolume = 0;
-                document.getElementById('staked-notif').innerText = "";
-                document.getElementById('wallet-funds').innerText = currentFunds.toFixed(2);
+                activeBetSelection = null;
+                activeBetCash = 0;
+                document.getElementById('active-bet-banner').innerText = "";
+                document.getElementById('wallet-funds').innerText = walletFunds.toFixed(2);
             }
 
-            let tableRowsRef = document.getElementById('game-history-body');
-            let colorDotTemplate = "";
-            let colorTextClass = "txt-green";
+            let tableRef = document.getElementById('game-history-body');
+            let dotMarkup = (colorFactor === 'Red') ? '<span class="dot bg-r"></span>' : (colorFactor === 'Green') ? '<span class="dot bg-g"></span>' : '<span class="dot bg-g"></span><span class="dot bg-v"></span>';
+            let textClass = (colorFactor === 'Red') ? 'txt-red' : 'txt-green';
 
-            if(colorMetric === 'Red') {
-                colorDotTemplate = '<span class="dot bg-r"></span>';
-                colorTextClass = "txt-red";
-            } else if (colorMetric === 'Green') {
-                colorDotTemplate = '<span class="dot bg-g"></span>';
-                colorTextClass = "txt-green";
-            } else {
-                colorDotTemplate = (randomLuckyNum === 0) ? '<span class="dot bg-r"></span><span class="dot bg-v"></span>' : '<span class="dot bg-g"></span><span class="dot bg-v"></span>';
-                colorTextClass = "txt-green";
-            }
-
-            let addedRowMarkup = `<tr>
-                <td>...${String(activePeriod - 1).slice(-4)}</td>
-                <td class="${colorTextClass}" style="${colorMetric==='Violet'?'color:#9b51e0;':''}">${randomLuckyNum}</td>
-                <td>${sizeMetric}</td>
-                <td>${colorDotTemplate}</td>
+            let newRowHtml = `<tr>
+                <td>...${String(runningPeriod - 1).slice(-4)}</td>
+                <td class="${textClass}" style="${colorFactor==='Violet'?'color:#9b51e0;':''}">${luckyDigit}</td>
+                <td>${sizeFactor}</td>
+                <td>${dotMarkup}</td>
             </tr>`;
-
-            if(tableRowsRef) {
-                tableRowsRef.innerHTML = addedRowMarkup + tableRowsRef.innerHTML;
-            }
+            if(tableRef) tableRef.innerHTML = newRowHtml + tableRef.innerHTML;
         }
     </script>
 </body>
-                </html>
-                
+    </html>
+    
