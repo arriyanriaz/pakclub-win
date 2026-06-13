@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAKclub Official Betting Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111827;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 450px;
+            margin: auto;
+            background: #1f2937;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111827;
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+        .balance {
+            font-size: 18px;
+            color: #22c55e;
+            font-weight: bold;
+        }
+        .timer-card {
+            background: #111827;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .timer {
+            font-size: 24px;
+            color: #facc15;
+            font-weight: bold;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            flex: 1;
+        }
+        .btn-green { background: #22c55e; }
+        .btn-violet { background: #a855f7; }
+        .btn-red { background: #ef4444; }
+        .btn-big { background: #f97316; }
+        .btn-small { background: #3b82f6; }
+        
+        .section-title {
+            text-align: left;
+            font-size: 16px;
+            margin: 15px 0 5px 0;
+            color: #9ca3af;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 95%;
+            padding: 12px;
+            margin: 6px 0;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
+            background: #111827;
+            color: white;
+            box-sizing: border-box;
+        }
+        .btn-submit {
+            background: #10b981;
+            width: 95%;
+            margin-top: 5px;
+        }
+        .history-item {
+            background: #111827;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .limits-text {
+            font-size: 11px;
+            color: #facc15;
+            text-align: left;
+            margin-bottom: 3px;
+        }
+        .account-box {
+            background: #111827; 
+            padding: 12px; 
+            border-radius: 8px; 
+            text-align: left; 
+            font-size: 13px; 
+            line-height: 1.6; 
+            margin-bottom: 15px;
+            border-left: 4px solid #10b981;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h3>PAKclub Win</h3>
+        <div class="balance">Rs. <span id="user-balance">5000.00</span></div>
+    </div>
+
+    <!-- Wingo Timer Section -->
+    <div class="timer-card">
+        <div style="text-align: left;">
+            <small style="color: #9ca3af;">Period Number</small><br>
+            <strong id="period-num">2026061301</strong>
+        </div>
+        <div>
+            <small style="color: #9ca3af;">Time Remaining</small><br>
+            <div class="timer" id="countdown-timer">00:60</div>
+        </div>
+    </div>
+
+    <!-- Betting Selection Buttons -->
+    <div class="section-title">Select Color <span style="font-size:11px; color:#facc15;">(Min Bet: Rs. 5)</span></div>
+    <div class="btn-group">
+        <button class="btn-green" onclick="selectBet('Green')">Green</button>
+        <button class="btn-violet" onclick="selectBet('Violet')">Violet</button>
+        <button class="btn-red" onclick="selectBet('Red')">Red</button>
+    </div>
+
+    <div class="section-title">Select Size</div>
+    <div class="btn-group">
+        <button class="btn-big" onclick="selectBet('Big')">BIG</button>
+        <button class="btn-small" onclick="selectBet('Small')">SMALL</button>
+    </div>
+
+    <div id="bet-status" style="color: #facc15; margin: 10px 0; font-weight: bold;"></div>
+
+    <hr style="border-color: #374151;">
+
+    <!-- Red Packet System -->
+    <div class="section-title">Claim Red Packet (Gift Code)</div>
+    <input type="text" id="gift-code-input" placeholder="Enter Gift Code here...">
+    <button class="btn-submit" onclick="claimGiftCode()">Claim Voucher</button>
+
+    <hr style="border-color: #374151;">
+
+    <!-- Deposit & Withdraw Framework -->
+    <div class="section-title">Instant Auto Gateway</div>
+    <div class="account-box">
+        <strong>Official Payment Accounts:</strong><br>
+        • <b>Easypaisa:</b> 03459784947 (Zaid Riaz)<br>
+        • <b>JazzCash:</b> 03454357485 (Mehar Ali)<br>
+        • <b>USDT (TRC20):</b> TXYZ1234567890NICEPLAYER
+    </div>
+    
+    <div class="limits-text">• Limit: Rs. 300 - Rs. 50,000 (Deposit)</div>
+    <div class="limits-text">• Limit: Rs. 500 - Rs. 50,000 (Withdraw)</div>
+    
+    <select id="payment-method">
+        <option value="Easypaisa">Easypaisa (Zaid Riaz)</option>
+        <option value="JazzCash">JazzCash (Mehar Ali)</option>
+        <option value="USDT">USDT (Crypto)</option>
+    </select>
+    <input type="number" id="transaction-amount" placeholder="Enter Amount (PKR)">
+    <input type="text" id="transaction-id" placeholder="Enter TRID / TxID (e.g. 12345678901)">
+    
+    <div class="btn-group" style="margin-top: 10px;">
+        <button class="btn-big" style="background:#10b981;" onclick="handleTransaction('Deposit')">Instant Deposit</button>
+        <button class="btn-red" onclick="handleTransaction('Withdraw')">Instant Withdraw</button>
+    </div>
+
+    <hr style="border-color: #374151;">
+
+    <!-- Game History -->
+    <div class="section-title">Recent Game History</div>
+    <div id="history-box">
+        <div class="history-item"><span>Period ..00</span> <span style="color:#22c55e;">Green (Small)</span></div>
+    </div>
+</div>
+
+<script>
+    let balance = 5000.00;
+    let currentPeriod = 2026061301;
+    let timeRemaining = 60;
+    let currentBet = null;
+    let currentBetAmount = 0;
+
+    let localGiftCodes = {
+        "PAK786": 500,
+        "FREEBONUS": 150,
+        "WINGO2026": 1000
+    };
+
+    // 1-Minute Live Clock Engine
+    setInterval(function() {
+        if (timeRemaining <= 0) {
+            timeRemaining = 60;
+            currentPeriod++;
+            document.getElementById('period-num').innerText = currentPeriod;
+            processGameResult();
+        } else {
+            timeRemaining--;
+        }
+        let secs = timeRemaining < 10 ? "0" + timeRemaining : timeRemaining;
+        document.getElementById('countdown-timer').innerText = "00:" + secs;
+    }, 1000);
+
+    function selectBet(type) {
+        if (balance < 5) {
+            alert("Your balance is less than minimum bet (Rs. 5). Please deposit first!");
+            return;
+        }
+
+        let betInput = prompt(`You selected: ${type}\nEnter Bet Amount (Minimum Rs. 5):`, "5");
+        if (betInput === null) return; 
+        let betAmount = parseInt(betInput);
+
+        if (isNaN(betAmount) || betAmount < 5) {
+            alert("Invalid Amount! Minimum bet is Rs. 5.");
+            return;
+        }
+
+        if (betAmount > balance) {
+            alert("Insufficient Balance!");
+            return;
+        }
+
+        currentBet = type;
+        currentBetAmount = betAmount;
+        balance -= betAmount; 
+        document.getElementById('user-balance').innerText = balance.toFixed(2);
+        document.getElementById('bet-status').innerText = `Active Bet: ${type} (Rs. ${currentBetAmount} Reserved)`;
+    }
+
+    function processGameResult() {
+        const poolColors = ['Red', 'Green', 'Violet'];
+        const poolSizes = ['Big', 'Small'];
+        let winningColor = poolColors[Math.floor(Math.random() * poolColors.length)];
+        let winningSize = poolSizes[Math.floor(Math.random() * poolSizes.length)];
+
+        if (currentBet !== null) {
+            if (currentBet === winningColor || currentBet === winningSize) {
+                let winAmount = currentBetAmount * 1.9; 
+                balance += winAmount;
+                alert(`🎉 Congratulations! You Won Rs. ${winAmount.toFixed(2)}`);
+            } else {
+                alert(`Better luck next time! Winning was: ${winningColor} (${winningSize})`);
+            }
+        }
+
+        let hBox = document.getElementById('history-box');
+        hBox.innerHTML = `<div class="history-item"><span>Period ..${String(currentPeriod).slice(-2)}</span> <span>${winningColor} (${winningSize})</span></div>` + hBox.innerHTML;
+        
+        currentBet = null;
+        currentBetAmount = 0;
+        document.getElementById('user-balance').innerText = balance.toFixed(2);
+        document.getElementById('bet-status').innerText = "";
+    }
+
+    function claimGiftCode() {
+        let enteredCode = document.getElementById('gift-code-input').value.trim();
+        if (localGiftCodes.hasOwnProperty(enteredCode)) {
+            let bonusValue = localGiftCodes[enteredCode];
+            balance += bonusValue;
+            document.getElementById('user-balance').innerText = balance.toFixed(2);
+            alert(`Voucher successfully claimed! Rs. ${bonusValue} added to your wallet.`);
+            delete localGiftCodes[enteredCode]; 
+            document.getElementById('gift-code-input').value = "";
+        } else {
+            alert("Invalid voucher code!");
+        }
+    }
+
+    // Auto-Simulation Gateway Logic
+    function handleTransaction(actionType) {
+        let method = document.getElementById('payment-method').value;
+        let amt = parseInt(document.getElementById('transaction-amount').value);
+        let idVal = document.getElementById('transaction-id').value.trim();
+        
+        if (!amt || !idVal) {
+            alert("Please fill both Amount and Transaction ID / TRID fields.");
+            return;
+        }
+
+        if (actionType === 'Deposit') {
+            if (amt < 300 || amt > 50000) {
+                alert("Deposit Failed! Amount must be between Rs. 300 and Rs. 50,000.");
+                return;
+            }
+            
+            // Real API Lookalike Simulation
+            alert(`Connecting to ${method} Auto Gateway... Please wait 5 seconds.`);
+            
+            setTimeout(function() {
+                balance += amt;
+                document.getElementById('user-balance').innerText = balance.toFixed(2);
+                alert(`✅ Auto-Payment Verified!\nRs. ${amt} has been automatically added to your wallet via ${method}.\nTRID: ${idVal}`);
+            }, 3000);
+
+        } else if (actionType === 'Withdraw') {
+            if (amt < 500 || amt > 50000) {
+                alert("Withdraw Failed! Amount must be between Rs. 500 and Rs. 50,000.");
+                return;
+            }
+            if (amt > balance) {
+                alert("Withdraw Failed! Insufficient Balance.");
+                return;
+            }
+            
+            balance -= amt;
+            document.getElementById('user-balance').innerText = balance.toFixed(2);
+            alert(`Processing Auto-Withdrawal...\nRs. ${amt} will be automatically sent to your ${method} account linked with TRID/Number within few minutes.`);
+        }
+        
+        document.getElementById('transaction-amount').value = "";
+        document.getElementById('transaction-id').value = "";
+    }
+</script>
+
+</body>
+</html>
