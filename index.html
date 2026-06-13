@@ -114,18 +114,42 @@
             margin-bottom: 15px;
             border-left: 4px solid #10b981;
         }
+        /* Referral System Styling */
+        .refer-card {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: left;
+        }
+        .refer-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+        .refer-btn {
+            background: #facc15;
+            color: #111827;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Header -->
     <div class="header">
         <h3>PAKclub Win</h3>
         <div class="balance">Rs. <span id="user-balance">5000.00</span></div>
     </div>
 
-    <!-- Wingo Timer Section -->
+    <div id="referrer-alert" style="display:none; background:#065f46; color:#34d399; padding:8px; margin-top:10px; border-radius:5px; font-size:12px;"></div>
+
     <div class="timer-card">
         <div style="text-align: left;">
             <small style="color: #9ca3af;">Period Number</small><br>
@@ -137,7 +161,6 @@
         </div>
     </div>
 
-    <!-- Betting Selection Buttons -->
     <div class="section-title">Select Color <span style="font-size:11px; color:#facc15;">(Min Bet: Rs. 5)</span></div>
     <div class="btn-group">
         <button class="btn-green" onclick="selectBet('Green')">Green</button>
@@ -155,14 +178,29 @@
 
     <hr style="border-color: #374151;">
 
-    <!-- Red Packet System -->
+    <div class="section-title">Agent Referral Program</div>
+    <div class="refer-card">
+        <div style="font-weight:bold; font-size:15px; color:#ffffff;">Invite Friends & Earn Commission</div>
+        <div style="font-size:11px; color:#bfdbfe; margin-top:2px;">Get 10% on Level 1 Deposit and 5% on Level 2</div>
+        
+        <input type="text" id="ref-link-field" readonly style="background:rgba(0,0,0,0.3); border:1px solid #3b82f6; margin-top:10px; font-size:12px;">
+        <button class="refer-btn" onclick="copyReferLink()">Copy Invite Link</button>
+
+        <div class="refer-stats">
+            <div><b>Total Team:</b> <br><span id="team-count">14 Players</span></div>
+            <div><b>L1 Invite Reward:</b> <br><span style="color:#facc15;">Rs. 2,450</span></div>
+            <div><b>L2 Commission:</b> <br><span style="color:#facc15;">Rs. 1,120</span></div>
+        </div>
+    </div>
+
+    <hr style="border-color: #374151;">
+
     <div class="section-title">Claim Red Packet (Gift Code)</div>
     <input type="text" id="gift-code-input" placeholder="Enter Gift Code here...">
     <button class="btn-submit" onclick="claimGiftCode()">Claim Voucher</button>
 
     <hr style="border-color: #374151;">
 
-    <!-- Deposit & Withdraw Framework -->
     <div class="section-title">Instant Auto Gateway</div>
     <div class="account-box">
         <strong>Official Payment Accounts:</strong><br>
@@ -189,7 +227,6 @@
 
     <hr style="border-color: #374151;">
 
-    <!-- Game History -->
     <div class="section-title">Recent Game History</div>
     <div id="history-box">
         <div class="history-item"><span>Period ..00</span> <span style="color:#22c55e;">Green (Small)</span></div>
@@ -208,6 +245,31 @@
         "FREEBONUS": 150,
         "WINGO2026": 1000
     };
+
+    // Auto Referral Link Generation Logic
+    window.onload = function() {
+        // Generate random UID for current viewer mockup if not present
+        let randomUID = Math.floor(100000 + Math.random() * 900000);
+        let currentURL = window.location.href.split('?')[0];
+        document.getElementById('ref-link-field').value = currentURL + "?ref=" + randomUID;
+
+        // Check if user came from someone's refer link
+        const urlParams = new URLSearchParams(window.location.search);
+        const myReferrer = urlParams.get('ref');
+        if (myReferrer) {
+            let alertBox = document.getElementById('referrer-alert');
+            alertBox.innerText = "You joined via Invitation ID: " + myReferrer + " (Rs. 50 Sign-up Bonus Pending Deposit!)";
+            alertBox.style.display = "block";
+        }
+    };
+
+    function copyReferLink() {
+        let copyText = document.getElementById('ref-link-field');
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile phones
+        navigator.clipboard.writeText(copyText.value);
+        alert("🎉 Referral Link Copied! Share it with friends to earn commission.");
+    }
 
     // 1-Minute Live Clock Engine
     setInterval(function() {
@@ -289,7 +351,6 @@
         }
     }
 
-    // Auto-Simulation Gateway Logic
     function handleTransaction(actionType) {
         let method = document.getElementById('payment-method').value;
         let amt = parseInt(document.getElementById('transaction-amount').value);
@@ -306,8 +367,7 @@
                 return;
             }
             
-            // Real API Lookalike Simulation
-            alert(`Connecting to ${method} Auto Gateway... Please wait 5 seconds.`);
+            alert(`Connecting to ${method} Auto Gateway... Please wait 3 seconds.`);
             
             setTimeout(function() {
                 balance += amt;
@@ -337,3 +397,4 @@
 
 </body>
 </html>
+    
