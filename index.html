@@ -12,7 +12,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            padding-bottom: 70px; /* space for nav bar */
+            padding-bottom: 70px;
         }
         .container {
             max-width: 450px;
@@ -24,7 +24,7 @@
             position: relative;
         }
 
-        /* LOGIN SIGNUP SYSTEM WALLS */
+        /* LOGIN SIGNUP SCREEN SYSTEM */
         .auth-screen {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -196,9 +196,9 @@
         <div class="auth-card">
             <div class="auth-logo">PAKclub Win</div>
             <p style="color:#bfa598; font-size:12px; margin-bottom:20px;">Secure Access Verification Portal</p>
-            <input type="text" id="login-phone" placeholder="Mobile Number / Player ID">
-            <input type="password" id="login-pass" placeholder="Password">
-            <button class="btn-submit" onclick="performAuthentication('login')">Log In</button>
+            <input type="text" id="login-phone" placeholder="Mobile Number / Player ID" value="03451234567">
+            <input type="password" id="login-pass" placeholder="Password" value="123456">
+            <button class="btn-submit" onclick="bypassAuthentication()">Log In</button>
             <p style="font-size:13px; margin-top:15px; color:#bfa598;">Don't have an account? <span style="color:#eb7d1e; cursor:pointer; font-weight:bold;" onclick="switchAuthView('signup')">Register Now</span></p>
         </div>
     </div>
@@ -210,7 +210,7 @@
             <input type="text" id="reg-phone" placeholder="Enter Mobile Number">
             <input type="password" id="reg-pass" placeholder="Set Secure Password">
             <input type="text" id="reg-invite" placeholder="Invitation Code (Optional)">
-            <button class="btn-submit" onclick="performAuthentication('signup')">Sign Up & Claim Bonus</button>
+            <button class="btn-submit" onclick="bypassAuthentication()">Sign Up & Claim Bonus</button>
             <p style="font-size:13px; margin-top:15px; color:#bfa598;">Already registered? <span style="color:#eb7d1e; cursor:pointer; font-weight:bold;" onclick="switchAuthView('login')">Login Here</span></p>
         </div>
     </div>
@@ -274,123 +274,5 @@
             <table>
                 <thead><tr><th>Period</th><th>Number</th><th>Big Small</th><th>Color</th></tr></thead>
                 <tbody id="history-rows">
-                    <tr><td>...0054</td><td style="color:#f05353; font-weight:bold;">4</td><td>Small</td><td><span class="dot ball-red"></span></td></tr>
-                    <tr><td>...0053</td><td style="color:#26a96e; font-weight:bold;">7</td><td>Big</td><td><span class="dot ball-green"></span></td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
-    <div class="app-panel id-panel" id="panel-activity">
-        <h3 style="color:#eb7d1e; text-align:left; margin-top:10px;">🎁 Special Events & Rewards</h3>
-        <div class="card-view">
-            <h4 style="margin:0 0 5px 0;">Red Packet Voucher Redemption</h4>
-            <p style="font-size:11px; color:#bfa598; margin:0 0 10px 0;">Enter official group promotion codes to load direct capital funds instantly.</p>
-            <input type="text" id="gift-code-field" placeholder="Paste Gift Bonus Code Here...">
-            <button class="btn-submit" onclick="claimVoucherBonus()">Claim Event Bonus</button>
-        </div>
-    </div>
-
-
-    <div class="app-panel id-panel" id="panel-promotion">
-        <h3 style="color:#eb7d1e; text-align:left; margin-top:10px;">🚀 Agent Commission Program</h3>
-        <div class="card-view" style="background: linear-gradient(135deg, #1e3c72, #2a5298); border-left:none;">
-            <h4 style="margin:0;">Invitation Link Network Gateway</h4>
-            <p style="font-size:11px; color:#e0e0e0;">Earn automatic 10% commission on level 1 team trades!</p>
-            <div style="display:flex; background:rgba(255,255,255,0.1); padding:8px; border-radius:6px; margin-top:10px; align-items:center; justify-content:between;">
-                <div id="ref-link-display" style="font-size:11px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:80%;">Loading agent server path...</div>
-                <button onclick="copyAgentLink()" style="background:#ff9800; border:none; color:white; padding:4px 8px; border-radius:4px; font-size:11px; font-weight:bold; cursor:pointer;">Copy</button>
-            </div>
-        </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-            <div class="card-view" style="margin-bottom:0;"><h5>Team Size</h5><h3 style="color:#ff9800; margin:5px 0;">18 Players</h3></div>
-            <div class="card-view" style="margin-bottom:0;"><h5>Total Rebate</h5><h3 style="color:#26a96e; margin:5px 0;">Rs. 4,850</h3></div>
-        </div>
-    </div>
-
-
-    <div class="app-panel id-panel" id="panel-wallet">
-        <h3 style="color:#eb7d1e; text-align:left; margin-top:10px;">💳 Financial Transfer Gateway</h3>
-        <div class="card-view">
-            <h4 style="margin:0 0 10px 0;">Instant Automatic Ledger Gateway</h4>
-            <select id="fin-mode" onchange="switchFinancialLabels()">
-                <option value="Deposit">Instant Secured Deposit Operations</option>
-                <option value="Withdraw">Instant Secured Withdrawal Disbursements</option>
-            </select>
-            <select id="fin-vendor">
-                <option value="Easypaisa">Easypaisa Account (Zaid Riaz - 03459784947)</option>
-                <option value="JazzCash">JazzCash Account (Mehar Ali - 03454357485)</option>
-            </select>
-            <input type="number" id="fin-amount" placeholder="Target Volume Amount (PKR)">
-            <input type="text" id="fin-reference" placeholder="Enter 11-Digit Transaction TRID Code">
-            <button class="btn-submit" onclick="executeFinancialGatewayAction()">Confirm Transaction Token</button>
-        </div>
-    </div>
-
-
-    <div class="app-panel id-panel" id="panel-account">
-        <div class="card-view" style="text-align:center; padding:25px 15px; background:linear-gradient(135deg, #42291d, #22140c); border-left:none; border:1px solid #eb7d1e;">
-            <div style="width:60px; height:60px; background:#eb7d1e; border-radius:50%; margin:0 auto 10px auto; display:flex; align-items:center; justify-content:center; font-size:24px;">👤</div>
-            <h3 style="margin:0;" id="profile-id-tag">Player_9234567</h3>
-            <p style="margin:4px 0 0 0; font-size:12px; color:#bfa598;">Status Classification: Verified Agent Partner</p>
-        </div>
-        <div class="card-view">
-            <h5 style="margin:0 0 5px 0; color:#bfa598;">Linked Core Identification Assets</h5>
-            <div style="font-size:12px; line-height:2;">
-                • Mobile Identity System: <span style="color:white; float:right;">+92 345 ******7</span><br>
-                • Platform UID Token: <span style="color:white; float:right;">882910482</span><br>
-                • Financial Security Safe: <span style="color:#26a96e; float:right;">Active Shield Locked</span>
-            </div>
-        </div>
-        <button class="btn-submit" style="background:#f05353;" onclick="window.location.reload()">Secure Terminate Session (Logout)</button>
-    </div>
-
-
-    <div class="bottom-nav">
-        <button class="nav-btn active" id="nav-home" onclick="handleNavigationSwitch('home')"><span class="nav-icon">🏠</span>Home</button>
-        <button class="nav-btn" id="nav-activity" onclick="handleNavigationSwitch('activity')"><span class="nav-icon">🎁</span>Activity</button>
-        <button class="nav-btn" id="nav-promotion" onclick="handleNavigationSwitch('promotion')"><span class="nav-icon">🚀</span>Promotion</button>
-        <button class="nav-btn" id="nav-wallet" onclick="handleNavigationSwitch('wallet')"><span class="nav-icon">💳</span>Wallet</button>
-        <button class="nav-btn" id="nav-account" onclick="handleNavigationSwitch('account')"><span class="nav-icon">👤</span>Account</button>
-    </div>
-
-</div>
-
-<script>
-    // Core Financial Parameters
-    let globalBalance = 9500.00;
-    let basePeriodId = 2026061310050;
-    let activeIntervalSec = 30;
-    let clockTimerCountdown = 30;
-    let currentActiveBet = null;
-    let activeBetAmount = 0;
-    let userBetHistory = [];
-
-    // Voucher validation strings
-    let giftLedger = { "PAK786": 500, "BONUS2026": 1000, "VIPCLUB": 250 };
-
-    // Dynamic Invitation Generation
-    window.onload = function() {
-        let baseRoot = window.location.href.split('?')[0];
-        let randomUID = Math.floor(200000 + Math.random() * 700000);
-        document.getElementById('ref-link-display').innerText = `${baseRoot}?invite=${randomUID}`;
-    };
-
-    // Authentication Switching Views
-    function switchAuthView(targetView) {
-        if(targetView === 'signup') {
-            document.getElementById('login-window').style.display = "none";
-            document.getElementById('signup-window').style.display = "flex";
-        } else {
-            document.getElementById('login-window').style.display = "flex";
-            document.getElementById('signup-window').style.display = "none";
-        }
-    }
-
-    // Logic for validation entries
-    function performAuthentication(mode) {
-        let phone = mode === 'login' ? document.getElementById('login-phone').value : document.getElementById('reg-phone').value;
-        let pass = mode === 'login' ? document.getElementById('login-pass').value : document.getElementById('reg-pass').value;
-
-        if(!phone || !pass) { alert("Please complete authentication creden
+                    <tr><td>...0054</td><td
+                                            
