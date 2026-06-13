@@ -10,15 +10,29 @@
             background-color: #22140c;
             color: white;
             text-align: center;
-            margin: 0; padding: 0; padding-bottom: 40px;
+            margin: 0; padding: 0; padding-bottom: 80px;
         }
         .container {
-            max-width: 450px; margin: auto; background: #22140c;
-            min-height: 100vh; padding: 15px; box-sizing: border-box;
+            max-width: 450px; margin: auto; background: #2c1a10;
+            min-height: 100vh; padding: 15px; box-sizing: border-box; position: relative;
         }
-        /* Wallet Card */
+        
+        /* AUTH SCREEN SYSTEMS */
+        .auth-screen {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #22140c; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;
+            transition: opacity 0.3s ease;
+        }
+        .auth-card {
+            background: #2c1a10; width: 100%; max-width: 380px;
+            padding: 25px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.7); border: 1px solid #eb7d1e;
+        }
+        .auth-logo { font-size: 28px; font-weight: bold; color: #eb7d1e; margin-bottom: 5px; }
+        
+        /* Wallet Card Setup */
         .wallet-card {
-            background: linear-gradient(135deg, #3a2214, #2c1a10);
+            background: linear-gradient(135deg, #42291d, #361f14);
             border-radius: 20px; padding: 20px; margin-bottom: 15px; 
             border: 1px solid #4a2e1f; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
@@ -26,9 +40,9 @@
         .wallet-sub { font-size: 13px; color: #bfa598; margin-top: 5px; }
         
         .action-btns { display: flex; gap: 15px; margin-top: 15px; }
-        .btn-action { flex: 1; padding: 12px; border-radius: 25px; border: none; font-weight: bold; font-size: 15px; cursor: pointer; }
-        .btn-withdraw { background-color: #d9534f; color: white; }
-        .btn-deposit { background-color: #2baf66; color: white; }
+        .btn-action { flex: 1; padding: 12px; border-radius: 25px; border: none; font-weight: bold; font-size: 15px; cursor: pointer; color: white; }
+        .btn-withdraw { background: #d9534f; }
+        .btn-deposit { background: #2baf66; }
 
         /* Game Modes Switches Grid */
         .mode-grid { display: flex; justify-content: space-between; background: #1b0f08; border-radius: 15px; padding: 6px; gap: 6px; margin-bottom: 15px; }
@@ -40,7 +54,7 @@
         .status-left { text-align: left; }
         .status-title { font-size: 15px; font-weight: bold; }
         .status-desc { font-size: 12px; opacity: 0.9; margin-top: 3px; }
-        .timer-box { font-size: 24px; font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 12px; border-radius: 8px; }
+        .timer-box { font-size: 24px; font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 12px; border-radius: 8px; letter-spacing: 1px; }
 
         /* Color Options Grid */
         .color-grid { display: flex; gap: 10px; margin-bottom: 15px; }
@@ -53,10 +67,10 @@
         .numbers-container { background: #1b0f08; border-radius: 15px; padding: 15px; margin-bottom: 15px; }
         .numbers-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
         .num-ball {
-            width: 50px; height: 50px; border-radius: 50%; font-size: 18px; font-weight: bold;
+            width: 48px; height: 48px; border-radius: 50%; font-size: 18px; font-weight: bold;
             display: flex; align-items: center; justify-content: center; margin: auto; color: white; cursor: pointer; border: none;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
         }
-        /* Original PAKclub Multi-color Balls Custom Gradients */
         .ball-0 { background: linear-gradient(135deg, #ff4d4d 50%, #9b51e0 50%); }
         .ball-5 { background: linear-gradient(135deg, #2baf66 50%, #9b51e0 50%); }
         .ball-red { background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff4d4d); }
@@ -64,30 +78,64 @@
 
         /* Big Small Buttons */
         .bs-grid { display: flex; gap: 12px; margin-bottom: 20px; }
-        .btn-bs { flex: 1; padding: 15px; border-radius: 30px; font-size: 18px; font-weight: bold; border: none; color: white; cursor: pointer; }
+        .btn-bs { flex: 1; padding: 14px; border-radius: 30px; font-size: 18px; font-weight: bold; border: none; color: white; cursor: pointer; }
         .btn-big { background: linear-gradient(180deg, #ff9f43, #ff8c1a); }
         .btn-small { background: linear-gradient(180deg, #2d9cdb, #3498db); }
+
+        /* Financial Overlay Panels */
+        .popup-modal {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8); z-index: 10000; display: none;
+            align-items: center; justify-content: center; padding: 20px;
+        }
+        .popup-card {
+            background: #2c1a10; width: 100%; max-width: 380px; padding: 20px;
+            border-radius: 15px; border: 1px solid #ff8c1a; text-align: left;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px;
+            border: 1px solid #4a2e1f; background: #1b0f08; color: white; box-sizing: border-box;
+        }
+        .btn-submit {
+            background: linear-gradient(180deg, #ff8c1a, #e67300);
+            color: white; width: 100%; padding: 12px; border: none;
+            border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px;
+        }
 
         /* History Table Section */
         .history-section { background: #1b0f08; border-radius: 15px; padding: 12px; text-align: left; }
         .history-tab { background: #ff8c1a; color: white; font-weight: bold; display: inline-block; padding: 8px 16px; border-radius: 8px 8px 0 0; font-size: 14px; }
         table { width: 100%; border-collapse: collapse; text-align: center; margin-top: 5px; font-size: 13px; }
-        th { background-color: #ff8c1a; color: white; padding: 10px; font-weight: bold; }
+        th { background-color: #ff8c1a; color: white; padding: 10px; }
         td { padding: 12px 8px; border-bottom: 1px solid #2c1a10; color: #bfa598; font-weight: bold; }
         .txt-red { color: #ff4d4d; }
         .txt-green { color: #2baf66; }
         .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 2px; }
+        .bg-v { background-color: #9b51e0; }
+        .bg-r { background-color: #ff4d4d; }
+        .bg-g { background-color: #2baf66; }
     </style>
 </head>
 <body>
 
+    <div class="auth-screen" id="gate-login">
+        <div class="auth-card">
+            <div class="auth-logo">PAKclub Win</div>
+            <p style="color:#bfa598; font-size:12px; margin-bottom:20px;">Secure Access Verification Portal</p>
+            <input type="text" placeholder="Mobile Number / Player ID" value="03451234567">
+            <input type="password" placeholder="Password" value="123456">
+            <button class="btn-submit" onclick="unlockMainHub()">Log In</button>
+        </div>
+    </div>
+
     <div class="container">
+        
         <div class="wallet-card">
-            <div class="wallet-title">Rs.9500.00</div>
+            <div class="wallet-title">Rs.<span id="wallet-funds">9500.00</span></div>
             <div class="wallet-sub">Available Trading Balance</div>
             <div class="action-btns">
-                <button class="btn-action btn-withdraw">Withdraw</button>
-                <button class="btn-action btn-deposit">Deposit</button>
+                <button class="btn-action btn-withdraw" onclick="openGateWindow('withdraw')">Withdraw</button>
+                <button class="btn-action btn-deposit" onclick="openGateWindow('deposit')">Deposit</button>
             </div>
         </div>
 
@@ -99,94 +147,210 @@
 
         <div class="status-box">
             <div class="status-left">
-                <div class="status-title">WinGo 30s Active</div>
-                <div class="status-desc">Period: 20260613100055</div>
+                <div class="status-title">WinGo 30s Running</div>
+                <div class="status-desc">Period: <span id="current-period">2026061310055</span></div>
             </div>
-            <div class="timer-box" id="countdown">00:23</div>
+            <div class="timer-box" id="countdown">00:30</div>
         </div>
 
         <div class="color-grid">
-            <button class="btn-color bg-green">Green</button>
-            <button class="btn-color bg-violet">Violet</button>
-            <button class="btn-color bg-red">Red</button>
+            <button class="btn-color bg-green" onclick="placeTradeAction('Green')">Green</button>
+            <button class="btn-color bg-violet" onclick="placeTradeAction('Violet')">Violet</button>
+            <button class="btn-color bg-red" onclick="placeTradeAction('Red')">Red</button>
         </div>
 
         <div class="numbers-container">
             <div class="numbers-grid">
-                <button class="num-ball ball-0">0</button>
-                <button class="num-ball ball-green">1</button>
-                <button class="num-ball ball-red">2</button>
-                <button class="num-ball ball-green">3</button>
-                <button class="num-ball ball-red">4</button>
-                <button class="num-ball ball-0" style="background: linear-gradient(135deg, #2baf66 50%, #9b51e0 50%);">5</button>
-                <button class="num-ball ball-red">6</button>
-                <button class="num-ball ball-green">7</button>
-                <button class="num-ball ball-red">8</button>
-                <button class="num-ball ball-green">9</button>
+                <button class="num-ball ball-0" onclick="placeTradeAction('0')">0</button>
+                <button class="num-ball ball-green" onclick="placeTradeAction('1')">1</button>
+                <button class="num-ball ball-red" onclick="placeTradeAction('2')">2</button>
+                <button class="num-ball ball-green" onclick="placeTradeAction('3')">3</button>
+                <button class="num-ball ball-red" onclick="placeTradeAction('4')">4</button>
+                <button class="num-ball ball-5" onclick="placeTradeAction('5')">5</button>
+                <button class="num-ball ball-red" onclick="placeTradeAction('6')">6</button>
+                <button class="num-ball ball-green" onclick="placeTradeAction('7')">7</button>
+                <button class="num-ball ball-red" onclick="placeTradeAction('8')">8</button>
+                <button class="num-ball ball-green" onclick="placeTradeAction('9')">9</button>
             </div>
         </div>
 
         <div class="bs-grid">
-            <button class="btn-bs btn-big">Big</button>
-            <button class="btn-bs btn-small">Small</button>
+            <button class="btn-bs btn-big" onclick="placeTradeAction('Big')">Big</button>
+            <button class="btn-bs btn-small" onclick="placeTradeAction('Small')">Small</button>
         </div>
-        
+        <div id="staked-notif" style="color:#ff8c1a; font-weight:bold; margin-bottom:15px; font-size:14px;"></div>
+
         <div class="history-tab">Game history</div>
         <div class="history-section">
             <table>
-                <thead>
-                    <tr style="display:none;">
-                        <th>Period</th>
-                        <th>Number</th>
-                        <th>Big Small</th>
-                        <th>Color</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>...0054</td>
-                        <td class="txt-red">2</td>
-                        <td>Small</td>
-                        <td><span class="dot bg-red"></span></td>
-                    </tr>
-                    <tr>
-                        <td>...0053</td>
-                        <td class="txt-green" style="color:#9b51e0;">5</td>
-                        <td>Big</td>
-                        <td><span class="dot bg-green"></span><span class="dot bg-violet"></span></td>
-                    </tr>
-                    <tr>
-                        <td>...0052</td>
-                        <td class="txt-green">9</td>
-                        <td>Big</td>
-                        <td><span class="dot bg-green"></span></td>
-                    </tr>
-                    <tr>
-                        <td>...0051</td>
-                        <td class="txt-red">8</td>
-                        <td>Big</td>
-                        <td><span class="dot bg-red"></span></td>
-                    </tr>
+                <tbody id="game-history-body">
+                    <tr><td>...0054</td><td class="txt-red">2</td><td>Small</td><td><span class="dot bg-r"></span></td></tr>
+                    <tr><td>...0053</td><td style="color:#9b51e0;">5</td><td>Big</td><td><span class="dot bg-g"></span><span class="dot bg-v"></span></td></tr>
+                    <tr><td>...0052</td><td class="txt-green">9</td><td>Big</td><td><span class="dot bg-g"></span></td></tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <script>
-        function startTimer() {
-            var time = 23;
-            setInterval(function() {
-                time--;
-                if(time < 0) {
-                    time = 30;
-                }
-                var seconds = time < 10 ? "0" + time : time;
-                document.getElementById("countdown").innerHTML = "00:" + seconds;
-            }, 1000);
-        }
-        window.onload = startTimer;
-    </script>
+    <div class="popup-modal" id="modal-deposit">
+        <div class="popup-card">
+            <h3 style="color:#2baf66; margin-top:0;">Secure Deposit Portal</h3>
+            <label>Select Official Gateway Account:</label>
+            <select id="deposit-vendor">
+                <option value="ep">Easypaisa (Zaid Riaz - 03459784947)</option>
+                <option value="jc">JazzCash (Mehar Ali - 03454357485)</option>
+            </select>
+            <label>Deposit Amount (Rs.):</label>
+            <input type="number" id="dep-amount" placeholder="Enter amount to add" value="1000">
+            <label>Transaction TRID / Reference ID (11 Digits):</label>
+            <input type="text" id="dep-trid" placeholder="Enter TRID Number">
+            <button class="btn-submit" style="background:#2baf66;" onclick="executeDepositFunds()">Confirm Deposit</button>
+            <button class="btn-submit" style="background:#555; margin-top:5px;" onclick="closeGateWindow('deposit')">Cancel</button>
+        </div>
+    </div>
 
+    <div class="popup-modal" id="modal-withdraw">
+        <div class="popup-card">
+            <h3 style="color:#d9534f; margin-top:0;">Secure Withdrawal Portal</h3>
+            <label>Select Payout Option:</label>
+            <select>
+                <option>Easypaisa App Account</option>
+                <option>JazzCash App Account</option>
+            </select>
+            <label>Withdraw Amount (Rs.):</label>
+            <input type="number" id="with-amount" placeholder="Enter amount to extract" value="500">
+            <label>Recipient Target Mobile Account Number:</label>
+            <input type="text" placeholder="e.g. 0345XXXXXXX">
+            <button class="btn-submit" style="background:#d9534f;" onclick="executeWithdrawFunds()">Request Cashout</button>
+            <button class="btn-submit" style="background:#555; margin-top:5px;" onclick="closeGateWindow('withdraw')">Cancel</button>
+        </div>
+    </div>
+
+    <audio id="beep-sound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" preload="auto"></audio>
+
+    <script>
+        let currentFunds = 9500.00;
+        let activePeriod = 2026061310055;
+        let clockTimerValue = 30;
+        let activePlayerBet = null;
+        let stakedMoneyVolume = 0;
+
+        function unlockMainHub() {
+            var screen = document.getElementById('gate-login');
+            if(screen) screen.style.display = 'none';
+        }
+
+        function openGateWindow(target) {
+            document.getElementById('modal-' + target).style.display = 'flex';
+        }
+
+        function closeGateWindow(target) {
+            document.getElementById('modal-' + target).style.display = 'none';
+        }
+
+        function executeDepositFunds() {
+            let amt = parseFloat(document.getElementById('dep-amount').value);
+            let trid = document.getElementById('dep-trid').value.trim();
+            if(!amt || trid === "") { alert("Please input valid amount and transaction reference ID token."); return; }
+            currentFunds += amt;
+            document.getElementById('wallet-funds').innerText = currentFunds.toFixed(2);
+            closeGateWindow('deposit');
+            alert("✅ Deposit Successfully Approved! Rs. " + amt + " added to your wallet.");
+        }
+
+        function executeWithdrawFunds() {
+            let amt = parseFloat(document.getElementById('with-amount').value);
+            if(!amt || amt > currentFunds) { alert("Insufficient or invalid withdrawal request balance."); return; }
+            currentFunds -= amt;
+            document.getElementById('wallet-funds').innerText = currentFunds.toFixed(2);
+            closeGateWindow('withdraw');
+            alert("✅ Withdrawal Request Logged! Rs. " + amt + " will transfer to your account shortly.");
+        }
+
+        function placeTradeAction(selection) {
+            let amtInput = prompt("Target Stake Selection: " + selection + "\nEnter Betting Capital Amount (Min Rs. 10):", "100");
+            if(!amtInput) return;
+            let stakedCash = parseInt(amtInput);
+
+            if(isNaN(stakedCash) || stakedCash < 10) { alert("Minimum trade requires Rs. 10."); return; }
+            if(stakedCash > currentFunds) { alert("Inadequate trading wallet balance."); return; }
+
+            activePlayerBet = selection;
+            stakedMoneyVolume = stakedCash;
+            currentFunds -= stakedCash;
+            document.getElementById('wallet-funds').innerText = currentFunds.toFixed(2);
+            document.getElementById('staked-notif').innerText = "Staked Asset: [" + selection + "] for Rs. " + stakedMoneyVolume;
+        }
+
+        // BACKGROUND AUTOMATIC SYSTEM CYCLE RUNNER ENGINE
+        setInterval(function() {
+            if(clockTimerValue <= 0) {
+                clockTimerValue = 30;
+                activePeriod++;
+                document.getElementById('current-period').innerText = activePeriod;
+                processSystemCycleEvaluation();
+            } else {
+                clockTimerValue--;
+            }
+
+            if(clockTimerValue <= 3) {
+                try { document.getElementById('beep-sound').play(); } catch(e){}
+            }
+
+            let secs = clockTimerValue < 10 ? "0" + clockTimerValue : clockTimerValue;
+            document.getElementById('countdown').innerText = "00:" + secs;
+        }, 1000);
+
+        function processSystemCycleEvaluation() {
+            let randomLuckyNum = Math.floor(Math.random() * 10);
+            let sizeMetric = (randomLuckyNum >= 5) ? 'Big' : 'Small';
+            let colorMetric = 'Green';
+
+            if([2,4,6,8].includes(randomLuckyNum)) colorMetric = 'Red';
+            if([0,5].includes(randomLuckyNum)) colorMetric = 'Violet';
+
+            if(activePlayerBet !== null) {
+                let userVictory = false;
+                if(activePlayerBet === String(randomLuckyNum) || activePlayerBet === sizeMetric || activePlayerBet === colorMetric) {
+                    let factor = (isNaN(activePlayerBet)) ? 1.95 : 8.5;
+                    let payoutReturn = stakedMoneyVolume * factor;
+                    currentFunds += payoutReturn;
+                    userVictory = true;
+                    alert("🎉 Victory! Complete Target Match +Rs. " + payoutReturn.toFixed(2));
+                }
+                activePlayerBet = null;
+                stakedMoneyVolume = 0;
+                document.getElementById('staked-notif').innerText = "";
+                document.getElementById('wallet-funds').innerText = currentFunds.toFixed(2);
+            }
+
+            let tableRowsRef = document.getElementById('game-history-body');
+            let colorDotTemplate = "";
+            let colorTextClass = "txt-green";
+
+            if(colorMetric === 'Red') {
+                colorDotTemplate = '<span class="dot bg-r"></span>';
+                colorTextClass = "txt-red";
+            } else if (colorMetric === 'Green') {
+                colorDotTemplate = '<span class="dot bg-g"></span>';
+                colorTextClass = "txt-green";
+            } else {
+                colorDotTemplate = (randomLuckyNum === 0) ? '<span class="dot bg-r"></span><span class="dot bg-v"></span>' : '<span class="dot bg-g"></span><span class="dot bg-v"></span>';
+                colorTextClass = "txt-green";
+            }
+
+            let addedRowMarkup = `<tr>
+                <td>...${String(activePeriod - 1).slice(-4)}</td>
+                <td class="${colorTextClass}" style="${colorMetric==='Violet'?'color:#9b51e0;':''}">${randomLuckyNum}</td>
+                <td>${sizeMetric}</td>
+                <td>${colorDotTemplate}</td>
+            </tr>`;
+
+            if(tableRowsRef) {
+                tableRowsRef.innerHTML = addedRowMarkup + tableRowsRef.innerHTML;
+            }
+        }
+    </script>
 </body>
-    </html>
-    
+                </html>
+                
