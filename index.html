@@ -10,16 +10,16 @@
             background-color: #22140c;
             color: white;
             text-align: center;
-            margin: 0; padding: 0; padding-bottom: 30px;
+            margin: 0; padding: 0; padding-bottom: 40px;
         }
         .container {
             max-width: 450px; margin: auto; background: #22140c;
             min-height: 100vh; padding: 15px; box-sizing: border-box;
         }
-        /* Top Balance Card */
+        /* Wallet Card */
         .wallet-card {
             background: linear-gradient(135deg, #3a2214, #2c1a10);
-            border-radius: 20px; padding: 20px; margin-bottom: 20px; 
+            border-radius: 20px; padding: 20px; margin-bottom: 15px; 
             border: 1px solid #4a2e1f; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
         .wallet-title { font-size: 32px; font-weight: bold; color: #ffffff; margin: 0; }
@@ -31,25 +31,52 @@
         .btn-deposit { background-color: #2baf66; color: white; }
 
         /* Game Modes Switches Grid */
-        .mode-grid { display: flex; justify-content: space-between; background: #1b0f08; border-radius: 15px; padding: 6px; gap: 6px; margin-bottom: 20px; }
+        .mode-grid { display: flex; justify-content: space-between; background: #1b0f08; border-radius: 15px; padding: 6px; gap: 6px; margin-bottom: 15px; }
         .mode-item { flex: 1; background: transparent; padding: 12px 5px; border-radius: 12px; color: #bfa598; font-size: 13px; border: none; cursor: pointer; }
         .mode-item.active { background: linear-gradient(180deg, #ff8c1a, #e67300); color: white; font-weight: bold; }
 
         /* Status & Timer Box */
-        .status-box { background: #ff8c1a; border-radius: 15px; padding: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; color: white; }
+        .status-box { background: #ff8c1a; border-radius: 15px; padding: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; color: white; }
         .status-left { text-align: left; }
         .status-title { font-size: 15px; font-weight: bold; }
         .status-desc { font-size: 12px; opacity: 0.9; margin-top: 3px; }
         .timer-box { font-size: 24px; font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 12px; border-radius: 8px; }
 
+        /* Color Options Grid */
+        .color-grid { display: flex; gap: 10px; margin-bottom: 15px; }
+        .btn-color { flex: 1; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; border: none; color: white; cursor: pointer; }
+        .bg-green { background-color: #2baf66; }
+        .bg-violet { background-color: #9b51e0; }
+        .bg-red { background-color: #ff4d4d; }
+
+        /* Numbers Grid Setup */
+        .numbers-container { background: #1b0f08; border-radius: 15px; padding: 15px; margin-bottom: 15px; }
+        .numbers-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+        .num-ball {
+            width: 50px; height: 50px; border-radius: 50%; font-size: 18px; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; margin: auto; color: white; cursor: pointer; border: none;
+        }
+        /* Original PAKclub Multi-color Balls Custom Gradients */
+        .ball-0 { background: linear-gradient(135deg, #ff4d4d 50%, #9b51e0 50%); }
+        .ball-5 { background: linear-gradient(135deg, #2baf66 50%, #9b51e0 50%); }
+        .ball-red { background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff4d4d); }
+        .ball-green { background: radial-gradient(circle at 30% 30%, #2ecc71, #2baf66); }
+
         /* Big Small Buttons */
         .bs-grid { display: flex; gap: 12px; margin-bottom: 20px; }
         .btn-bs { flex: 1; padding: 15px; border-radius: 30px; font-size: 18px; font-weight: bold; border: none; color: white; cursor: pointer; }
         .btn-big { background: linear-gradient(180deg, #ff9f43, #ff8c1a); }
-        .btn-small { background: linear-gradient(180deg, #2d9cdb, #219653); }
+        .btn-small { background: linear-gradient(180deg, #2d9cdb, #3498db); }
 
-        /* Welcome Banner */
-        .welcome-msg { color: #ff8c1a; font-weight: bold; font-size: 16px; margin-top: 25px; background: #2c1a10; padding: 12px; border-radius: 10px; border-left: 4px solid #ff8c1a; }
+        /* History Table Section */
+        .history-section { background: #1b0f08; border-radius: 15px; padding: 12px; text-align: left; }
+        .history-tab { background: #ff8c1a; color: white; font-weight: bold; display: inline-block; padding: 8px 16px; border-radius: 8px 8px 0 0; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; text-align: center; margin-top: 5px; font-size: 13px; }
+        th { background-color: #ff8c1a; color: white; padding: 10px; font-weight: bold; }
+        td { padding: 12px 8px; border-bottom: 1px solid #2c1a10; color: #bfa598; font-weight: bold; }
+        .txt-red { color: #ff4d4d; }
+        .txt-green { color: #2baf66; }
+        .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 2px; }
     </style>
 </head>
 <body>
@@ -78,13 +105,70 @@
             <div class="timer-box" id="countdown">00:23</div>
         </div>
 
+        <div class="color-grid">
+            <button class="btn-color bg-green">Green</button>
+            <button class="btn-color bg-violet">Violet</button>
+            <button class="btn-color bg-red">Red</button>
+        </div>
+
+        <div class="numbers-container">
+            <div class="numbers-grid">
+                <button class="num-ball ball-0">0</button>
+                <button class="num-ball ball-green">1</button>
+                <button class="num-ball ball-red">2</button>
+                <button class="num-ball ball-green">3</button>
+                <button class="num-ball ball-red">4</button>
+                <button class="num-ball ball-0" style="background: linear-gradient(135deg, #2baf66 50%, #9b51e0 50%);">5</button>
+                <button class="num-ball ball-red">6</button>
+                <button class="num-ball ball-green">7</button>
+                <button class="num-ball ball-red">8</button>
+                <button class="num-ball ball-green">9</button>
+            </div>
+        </div>
+
         <div class="bs-grid">
             <button class="btn-bs btn-big">Big</button>
             <button class="btn-bs btn-small">Small</button>
         </div>
         
-        <div class="welcome-msg">
-            🎉 Welcome to Dashboard! System is running active.
+        <div class="history-tab">Game history</div>
+        <div class="history-section">
+            <table>
+                <thead>
+                    <tr style="display:none;">
+                        <th>Period</th>
+                        <th>Number</th>
+                        <th>Big Small</th>
+                        <th>Color</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>...0054</td>
+                        <td class="txt-red">2</td>
+                        <td>Small</td>
+                        <td><span class="dot bg-red"></span></td>
+                    </tr>
+                    <tr>
+                        <td>...0053</td>
+                        <td class="txt-green" style="color:#9b51e0;">5</td>
+                        <td>Big</td>
+                        <td><span class="dot bg-green"></span><span class="dot bg-violet"></span></td>
+                    </tr>
+                    <tr>
+                        <td>...0052</td>
+                        <td class="txt-green">9</td>
+                        <td>Big</td>
+                        <td><span class="dot bg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>...0051</td>
+                        <td class="txt-red">8</td>
+                        <td>Big</td>
+                        <td><span class="dot bg-red"></span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -94,7 +178,7 @@
             setInterval(function() {
                 time--;
                 if(time < 0) {
-                    time = 30; // 30 seconds loop reset
+                    time = 30;
                 }
                 var seconds = time < 10 ? "0" + time : time;
                 document.getElementById("countdown").innerHTML = "00:" + seconds;
@@ -104,4 +188,5 @@
     </script>
 
 </body>
-</html>
+    </html>
+    
