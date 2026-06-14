@@ -6,62 +6,71 @@
     <title>PAKclub Win</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { background-color: #1a0f00; color: #fff; padding-bottom: 30px; }
+        body { background-color: #1a0f00; color: #fff; padding-bottom: 40px; }
         
         .screen { display: none; }
         .screen.active { display: block; }
+        .game-section { display: none; }
+        .game-section.active { display: block; }
 
-        /* LOGIN SCREEN DESIGN (SCREEN 1000436714.jpg) */
+        /* LOGIN PORTAL STYLING */
         .login-bg { min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .login-box { background: #261600; padding: 30px 20px; border-radius: 20px; width: 100%; max-width: 380px; border: 1px solid #e67e22; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.6); }
-        .login-box h2 { color: #e67e22; font-size: 28px; margin-bottom: 5px; font-weight: bold; }
-        .login-box p { color: #aaa; font-size: 13px; margin-bottom: 25px; }
-        .input-group { margin-bottom: 15px; text-align: left; }
-        .input-group input { width: 100%; padding: 12px; background: #120a00; border: 1px solid #3d2400; border-radius: 10px; color: #fff; font-size: 16px; outline: none; }
-        .btn-login { width: 100%; padding: 12px; background: #e67e22; color: #fff; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .login-box { background: #261600; padding: 35px 20px; border-radius: 20px; width: 100%; max-width: 380px; border: 1px solid #e67e22; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+        .login-box h2 { color: #e67e22; font-size: 32px; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; }
+        .login-box p { color: #aaa; font-size: 13px; margin-bottom: 30px; }
+        .input-group { margin-bottom: 15px; }
+        .input-group input { width: 100%; padding: 14px; background: #120a00; border: 1px solid #3d2400; border-radius: 12px; color: #fff; font-size: 16px; outline: none; text-align: center; }
+        .btn-login { width: 100%; padding: 14px; background: #e67e22; color: #fff; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; box-shadow: 0 4px 15px rgba(230,126,34,0.3); }
 
-        /* DASHBOARD SCREEN DESIGN (SCREEN 1000436713.jpg) */
-        .balance-card { background: #261600; margin: 15px; padding: 20px; border-radius: 20px; text-align: center; border: 1px solid #3d2400; }
-        .balance-card h1 { font-size: 36px; color: #fff; font-weight: bold; margin-bottom: 5px; }
-        .balance-card p { color: #aaa; font-size: 14px; margin-bottom: 15px; }
+        /* MAIN DASHBOARD HEADER & WALLET */
+        .balance-card { background: #261600; margin: 15px; padding: 25px 20px; border-radius: 20px; text-align: center; border: 1px solid #3d2400; }
+        .balance-card h1 { font-size: 40px; color: #fff; font-weight: bold; margin-bottom: 5px; }
+        .balance-card p { color: #aaa; font-size: 14px; margin-bottom: 20px; }
         .wallet-btns { display: flex; gap: 15px; justify-content: center; }
-        .w-btn { flex: 1; max-width: 140px; padding: 12px; border: none; border-radius: 25px; font-size: 16px; font-weight: bold; color: #fff; cursor: pointer; }
+        .w-btn { flex: 1; max-width: 140px; padding: 12px; border: none; border-radius: 25px; font-size: 16px; font-weight: bold; color: #fff; cursor: pointer; text-align: center; }
         .btn-withdraw-nav { background: #e74c3c; }
         .btn-deposit-nav { background: #2ecc71; }
 
-        /* GAME TABS */
+        /* NAVIGATION TABS (WINGO, AVIATOR, CASINO) */
         .game-tabs { display: flex; margin: 15px; gap: 10px; }
-        .g-tab { background: #261600; padding: 15px 10px; border-radius: 12px; text-align: center; flex: 1; cursor: pointer; border: 1px solid #3d2400; font-size: 13px; color: #aaa; font-weight: bold; }
+        .g-tab { background: #261600; padding: 12px 5px; border-radius: 12px; text-align: center; flex: 1; cursor: pointer; border: 1px solid #3d2400; font-size: 13px; color: #aaa; font-weight: bold; transition: 0.2s; }
         .g-tab.active { background: #e67e22; color: #fff; border-color: #e67e22; }
 
-        /* WINGO PANEL */
+        /* WINGO LAYOUT ENGINE */
         .wingo-panel { background: #e67e22; margin: 15px; padding: 15px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; }
         .wingo-panel h3 { font-size: 16px; font-weight: bold; }
         .wingo-panel p { font-size: 12px; opacity: 0.9; }
-        .timer-box { background: rgba(0,0,0,0.3); padding: 8px 15px; border-radius: 10px; font-size: 24px; font-weight: bold; letter-spacing: 1px; }
-
-        /* COLOR BUTTONS */
+        .timer-box { background: rgba(0,0,0,0.3); padding: 8px 15px; border-radius: 10px; font-size: 24px; font-weight: bold; }
         .color-row { display: flex; margin: 15px; gap: 10px; }
-        .c-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; color: #fff; font-weight: bold; font-size: 16px; cursor: pointer; }
+        .c-btn { flex: 1; padding: 14px; border: none; border-radius: 10px; color: #fff; font-weight: bold; font-size: 16px; cursor: pointer; }
         .c-green { background: #2ecc71; } .c-violet { background: #9b59b6; } .c-red { background: #e74c3c; }
-
-        /* NUMBERS GRID */
         .numbers-box { background: #261600; margin: 15px; padding: 15px; border-radius: 15px; border: 1px solid #3d2400; }
         .num-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-        .n-btn { width: 50px; height: 50px; border-radius: 50px; border: none; color: #fff; font-weight: bold; font-size: 16px; cursor: pointer; margin: 0 auto; }
-
-        /* BIG SMALL */
+        .n-btn { width: 48px; height: 48px; border-radius: 50px; border: none; color: #fff; font-weight: bold; font-size: 16px; cursor: pointer; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
         .bs-row { display: flex; margin: 15px; gap: 15px; }
         .bs-btn { flex: 1; padding: 12px; border: none; border-radius: 25px; color: #fff; font-weight: bold; font-size: 16px; cursor: pointer; }
         .b-big { background: #e67e22; } .b-small { background: #3498db; }
 
-        /* MODAL POPUPS */
+        /* AVIATOR REALTIME GRAPHICS ENGINE */
+        .aviator-container { background: #141414; margin: 15px; padding: 20px; border-radius: 15px; border: 1px solid #e74c3c; text-align: center; }
+        .aviator-plot { height: 160px; background: #0a0a0a; border-radius: 10px; margin-bottom: 15px; position: relative; display: flex; justify-content: center; align-items: center; border-bottom: 2px solid #e74c3c; border-left: 2px solid #e74c3c; overflow: hidden; }
+        .plane-mult { font-size: 42px; font-weight: bold; color: #e74c3c; z-index: 5; }
+        .plane-icon { position: absolute; bottom: 10px; left: 10px; font-size: 26px; color: #e74c3c; transition: transform 0.1s linear; }
+        .av-input { width: 100%; max-width: 200px; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 8px; text-align: center; margin-bottom: 10px; outline: none; }
+
+        /* CASINO VEGAS STYLE GRID */
+        .casino-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 15px; }
+        .casino-card { background: #261600; border-radius: 15px; border: 1px solid #e67e22; padding: 20px 10px; text-align: center; }
+        .casino-card h4 { color: #ffcc00; margin-bottom: 10px; font-size: 15px; }
+        .btn-play { padding: 8px 18px; background: #e67e22; border: none; border-radius: 8px; color: #fff; font-weight: bold; cursor: pointer; font-size: 13px; }
+
+        /* FINANCIAL POPUPS (MODALS) */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { background: #261600; border-radius: 20px; width: 100%; max-width: 360px; padding: 20px; border: 1px solid #e67e22; }
+        .modal-content { background: #261600; border-radius: 20px; width: 100%; max-width: 360px; padding: 25px 20px; border: 1px solid #e67e22; }
         .modal-header { font-size: 18px; font-weight: bold; color: #e67e22; text-align: center; margin-bottom: 15px; }
-        .gw-box { background: #120a00; border: 1px solid #3d2400; padding: 12px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+        .gw-box { background: #120a00; border: 1px solid #3d2400; padding: 12px; border-radius: 10px; margin-bottom: 12px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
         .gw-box.selected { border-color: #e67e22; background: #3d2400; }
-        .modal input { width: 100%; padding: 12px; background: #120a00; border: 1px solid #3d2400; border-radius: 10px; color: #fff; margin-bottom: 15px; outline: none; }
+        .modal input { width: 100%; padding: 12px; background: #120a00; border: 1px solid #3d2400; border-radius: 10px; color: #fff; margin-bottom: 15px; outline: none; font-size: 15px; }
         .modal-btns-row { display: flex; gap: 10px; }
         .m-btn { flex: 1; padding: 12px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; text-align: center; }
     </style>
@@ -74,84 +83,120 @@
                 <h2>PAKclub Win</h2>
                 <p>Secure Access Verification Portal</p>
                 <div class="input-group">
-                    <input type="tel" id="phoneInput" placeholder="Enter mobile number" value="03459785262">
+                    <input type="tel" placeholder="Enter mobile number" value="03459785262">
                 </div>
                 <div class="input-group">
-                    <input type="password" id="passInput" placeholder="Enter password" value="1234567890">
+                    <input type="password" placeholder="Enter password" value="••••••••••••">
                 </div>
-                <button class="btn-login" onclick="bypassToDashboard()">Log In</button>
+                <button class="btn-login" onclick="gatepassDashboard()">Log In</button>
             </div>
         </div>
     </div>
 
     <div id="dashboardScreen" class="screen">
+        
         <div class="balance-card">
-            <h1>Rs.<span id="mainBalance">9500.00</span></h1>
+            <h1>Rs.<span id="mainBalance">500.00</span></h1>
             <p>Available Trading Balance</p>
             <div class="wallet-btns">
-                <button class="w-btn btn-withdraw-nav" onclick="openFinanceModal('withdrawModal')">Withdraw</button>
-                <button class="w-btn btn-deposit-nav" onclick="openFinanceModal('depositModal')">Deposit</button>
+                <button class="w-btn btn-withdraw-nav" onclick="triggerModal('withdrawModal', true)">Withdraw</button>
+                <button class="w-btn btn-deposit-nav" onclick="triggerModal('depositModal', true)">Deposit</button>
             </div>
         </div>
 
         <div class="game-tabs">
-            <div class="g-tab active">⏱️<br>WinGo 30s</div>
-            <div class="g-tab" onclick="alert('Aviator engine loading...')">✈️<br>Aviator</div>
-            <div class="g-tab" onclick="alert('Casino Slots launching...')">🎰<br>Casino</div>
+            <div class="g-tab active" id="tab-wingo" onclick="routeGameView('wingo')">⏱️<br>WinGo 30s</div>
+            <div class="g-tab" id="tab-aviator" onclick="routeGameView('aviator')">✈️<br>Aviator</div>
+            <div class="g-tab" id="tab-casino" onclick="routeGameView('casino')">🎰<br>Casino</div>
         </div>
 
-        <div class="wingo-panel">
-            <div>
-                <h3>WinGo 30s Running</h3>
-                <p>Period: <span id="periodText" style="color: #fff; font-weight: bold;">2026061310059</span></p>
+        <div class="game-section active" idsec="wingo">
+            <div class="wingo-panel">
+                <div>
+                    <h3>WinGo 30s Running</h3>
+                    <p>Period: <span id="periodText" style="color: #fff; font-weight: bold;">2026061410061</span></p>
+                </div>
+                <div class="timer-box" id="timerText">00:30</div>
             </div>
-            <div class="timer-box" id="timerText">00:10</div>
-        </div>
 
-        <div class="color-row">
-            <button class="c-btn c-green" onclick="placeBet('Green')">Green</button>
-            <button class="c-btn c-violet" onclick="placeBet('Violet')">Violet</button>
-            <button class="c-btn c-red" onclick="placeBet('Red')">Red</button>
-        </div>
+            <div class="color-row">
+                <button class="c-btn c-green" onclick="executeBet('Green')">Green</button>
+                <button class="c-btn c-violet" onclick="executeBet('Violet')">Violet</button>
+                <button class="c-btn c-red" onclick="executeBet('Red')">Red</button>
+            </div>
 
-        <div class="numbers-box">
-            <div class="num-grid">
-                <button class="n-btn" onclick="placeBet('0')" style="background: linear-gradient(135deg, #e74c3c 50%, #9b59b6 50%);">0</button>
-                <button class="n-btn" onclick="placeBet('1')" style="background: #2ecc71;">1</button>
-                <button class="n-btn" onclick="placeBet('2')" style="background: #e74c3c;">2</button>
-                <button class="n-btn" onclick="placeBet('3')" style="background: #2ecc71;">3</button>
-                <button class="n-btn" onclick="placeBet('4')" style="background: #e74c3c;">4</button>
-                <button class="n-btn" onclick="placeBet('5')" style="background: linear-gradient(135deg, #2ecc71 50%, #9b59b6 50%);">5</button>
-                <button class="n-btn" onclick="placeBet('6')" style="background: #e74c3c;">6</button>
-                <button class="n-btn" onclick="placeBet('7')" style="background: #2ecc71;">7</button>
-                <button class="n-btn" onclick="placeBet('8')" style="background: #e74c3c;">8</button>
-                <button class="n-btn" onclick="placeBet('9')" style="background: #2ecc71;">9</button>
+            <div class="numbers-box">
+                <div class="num-grid">
+                    <button class="n-btn" onclick="executeBet('0')" style="background: linear-gradient(135deg, #e74c3c 50%, #9b59b6 50%);">0</button>
+                    <button class="n-btn" onclick="executeBet('1')" style="background: #2ecc71;">1</button>
+                    <button class="n-btn" onclick="executeBet('2')" style="background: #e74c3c;">2</button>
+                    <button class="n-btn" onclick="executeBet('3')" style="background: #2ecc71;">3</button>
+                    <button class="n-btn" onclick="executeBet('4')" style="background: #e74c3c;">4</button>
+                    <button class="n-btn" onclick="executeBet('5')" style="background: linear-gradient(135deg, #2ecc71 50%, #9b59b6 50%);">5</button>
+                    <button class="n-btn" onclick="executeBet('6')" style="background: #e74c3c;">6</button>
+                    <button class="n-btn" onclick="executeBet('7')" style="background: #2ecc71;">7</button>
+                    <button class="n-btn" onclick="executeBet('8')" style="background: #e74c3c;">8</button>
+                    <button class="n-btn" onclick="executeBet('9')" style="background: #2ecc71;">9</button>
+                </div>
+            </div>
+
+            <div class="bs-row">
+                <button class="bs-btn b-big" onclick="executeBet('Big')">Big</button>
+                <button class="bs-btn b-small" onclick="executeBet('Small')">Small</button>
             </div>
         </div>
 
-        <div class="bs-row">
-            <button class="bs-btn b-big" onclick="placeBet('Big')">Big</button>
-            <button class="bs-btn b-small" onclick="placeBet('Small')">Small</button>
+        <div class="game-section" idsec="aviator">
+            <div class="aviator-container">
+                <div class="aviator-plot">
+                    <div class="plane-mult" id="avMultiplier">1.00x</div>
+                    <div class="plane-icon" id="avPlane">✈</div>
+                </div>
+                <input type="number" id="avAmount" class="av-input" value="100" placeholder="Bet Amount"><br>
+                <button class="btn-login" id="avEngineBtn" onclick="runAviatorEngine()" style="background:#e74c3c; margin-top:5px; max-width:200px;">Bet & Fly</button>
+            </div>
         </div>
+
+        <div class="game-section" idsec="casino">
+            <div class="casino-grid">
+                <div class="casino-card">
+                    <h4>Premium Roulette</h4>
+                    <button class="btn-play" onclick="triggerCasinoGame('Roulette')">Play Live</button>
+                </div>
+                <div class="casino-card">
+                    <h4>777 Gold Slots</h4>
+                    <button class="btn-play" onclick="triggerCasinoGame('Slots')">Spin Now</button>
+                </div>
+                <div class="casino-card">
+                    <h4>Luxury Baccarat</h4>
+                    <button class="btn-play" onclick="triggerCasinoGame('Baccarat')">Join Table</button>
+                </div>
+                <div class="casino-card">
+                    <h4>Dragon Tiger</h4>
+                    <button class="btn-play" onclick="triggerCasinoGame('Dragon Tiger')">Enter App</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="modal" id="depositModal">
         <div class="modal-content">
             <div class="modal-header">Manual Account Deposit</div>
-            <p style="font-size: 12px; color: #aaa; text-align: center; margin-bottom: 12px;">Limit: Rs. 300 - Rs. 50,000</p>
-            <div class="gw-box" id="dEP" onclick="selectGateway('dep', 'ep')">
+            <p style="font-size:11px; color:#aaa; text-align:center; margin-bottom:12px;">Limits enforced: Rs. 300 - Rs. 50,000</p>
+            <div class="gw-box" id="dEP" onclick="pickGateway('dep', 'ep')">
                 <span>EasyPaisa (Zaid Riaz)</span>
                 <strong style="color: #2ecc71;">03459784947</strong>
             </div>
-            <div class="gw-box" id="dJC" onclick="selectGateway('dep', 'jc')">
+            <div class="gw-box" id="dJC" onclick="pickGateway('dep', 'jc')">
                 <span>JazzCash (Mehar Ali)</span>
                 <strong style="color: #2ecc71;">03454357485</strong>
             </div>
-            <input type="number" id="depAmountInput" placeholder="Enter Amount (Rs.)">
-            <input type="text" id="depTxidInput" placeholder="Enter Transaction TRX ID">
+            <input type="number" id="dAmount" placeholder="Enter Transfer Amount (Rs.)">
+            <input type="text" id="dTxid" placeholder="Enter 11-Digit Transaction TRX ID">
             <div class="modal-btns-row">
-                <button class="m-btn" onclick="closeFinanceModal('depositModal')" style="background: #444; color: #fff;">Cancel</button>
-                <button class="m-btn" onclick="submitDeposit()" style="background: #2ecc71; color: #fff;">Submit</button>
+                <button class="m-btn" onclick="triggerModal('depositModal', false)" style="background: #444; color: #fff;">Cancel</button>
+                <button class="m-btn" onclick="commitDeposit()" style="background: #2ecc71; color: #fff;">Submit Proof</button>
             </div>
         </div>
     </div>
@@ -159,125 +204,136 @@
     <div class="modal" id="withdrawModal">
         <div class="modal-content">
             <div class="modal-header">Request Secure Withdrawal</div>
-            <p style="font-size: 12px; color: #aaa; text-align: center; margin-bottom: 12px;">Limit: Rs. 500 - Rs. 50,000</p>
-            <div class="gw-box" id="wEP" onclick="selectGateway('wit', 'ep')">
-                <span>EasyPaisa Wallet</span>
+            <p style="font-size:11px; color:#aaa; text-align:center; margin-bottom:12px;">Limits enforced: Rs. 500 - Rs. 50,000</p>
+            <div class="gw-box" id="wEP" onclick="pickGateway('wit', 'ep')">
+                <span>EasyPaisa Wallet Terminal</span>
             </div>
-            <div class="gw-box" id="wJC" onclick="selectGateway('wit', 'jc')">
-                <span>JazzCash Wallet</span>
+            <div class="gw-box" id="wJC" onclick="pickGateway('wit', 'jc')">
+                <span>JazzCash Wallet Terminal</span>
             </div>
-            <input type="text" id="witAccountInput" placeholder="Wallet Mobile Number">
-            <input type="text" id="witNameInput" placeholder="Account Title Name">
-            <input type="number" id="witAmountInput" placeholder="Amount to Withdraw (Rs.)">
+            <input type="text" id="wAccount" placeholder="Recipient Mobile Number">
+            <input type="text" id="wName" placeholder="Account Title Holder Name">
+            <input type="number" id="wAmount" placeholder="Amount to Extract (Rs.)">
             <div class="modal-btns-row">
-                <button class="m-btn" onclick="closeFinanceModal('withdrawModal')" style="background: #444; color: #fff;">Cancel</button>
-                <button class="m-btn" onclick="submitWithdrawal()" style="background: #e74c3c; color: #fff;">Withdraw</button>
+                <button class="m-btn" onclick="triggerModal('withdrawModal', false)" style="background: #444; color: #fff;">Cancel</button>
+                <button class="m-btn" onclick="commitWithdrawal()" style="background: #e74c3c; color: #fff;">Confirm Order</button>
             </div>
         </div>
     </div>
 
-    <script>
-        let balance = 9500.00;
-        let selectedDepG = '';
-        let selectedWitG = '';
 
-        function bypassToDashboard() {
+    <script>
+        let runtimeBalance = 500.00;
+        let activeDepGw = '';
+        let activeWitGw = '';
+        
+        function gatepassDashboard() {
             document.getElementById('loginScreen').classList.remove('active');
             document.getElementById('dashboardScreen').classList.add('active');
-            document.getElementById('mainBalance').innerText = balance.toFixed(2);
+            syncBalance();
         }
 
-        /* --- WinGo 30s Loop Engine --- */
-        let sec = 10;
-        let period = 2026061310059;
-        setInterval(() => {
-            if(sec <= 0) {
-                sec = 30;
-                period++;
-                document.getElementById('periodText').innerText = period;
-            } else {
-                sec--;
-            }
-            document.getElementById('timerText').innerText = '00:' + (sec < 10 ? '0' + sec : sec);
-        }, 1000);
+        function syncBalance() {
+            document.getElementById('mainBalance').innerText = runtimeBalance.toFixed(2);
+        }
 
-        function placeBet(type) {
-            let amt = prompt("Enter Bet Amount for " + type + " (Rs.):", "100");
-            if(!amt) return;
-            let bet = parseFloat(amt);
-            if(isNaN(bet) || bet <= 0) { alert("Invalid Amount"); return; }
-            if(balance < bet) { alert("Insufficient Balance!"); return; }
+        /* --- Application Views Navigation Router --- */
+        function routeGameView(targetID) {
+            document.querySelectorAll('.game-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.g-tab').forEach(tab => tab.classList.remove('active'));
             
-            balance -= bet;
-            document.getElementById('mainBalance').innerText = balance.toFixed(2);
-            alert("Bet Successful on " + type + " for Rs. " + bet);
+            document.querySelector(`[idsec="${targetID}"]`).classList.add('active');
+            document.getElementById('tab-' + targetID).classList.add('active');
         }
 
-        /* --- Modal Control Logic --- */
-        function openFinanceModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeFinanceModal(id) { document.getElementById(id).style.display = 'none'; }
+        function triggerModal(id, open) {
+            document.getElementById(id).style.display = open ? 'flex' : 'none';
+        }
 
-        function selectGateway(mode, gw) {
+        function pickGateway(mode, provider) {
             if(mode === 'dep') {
-                selectedDepG = gw;
+                activeDepGw = provider;
                 document.getElementById('dEP').classList.remove('selected');
                 document.getElementById('dJC').classList.remove('selected');
-                if(gw === 'ep') document.getElementById('dEP').classList.add('selected');
-                if(gw === 'jc') document.getElementById('dJC').classList.add('selected');
+                document.getElementById('d' + provider.toUpperCase()).classList.add('selected');
             } else {
-                selectedWitG = gw;
+                activeWitGw = provider;
                 document.getElementById('wEP').classList.remove('selected');
                 document.getElementById('wJC').classList.remove('selected');
-                if(gw === 'ep') document.getElementById('wEP').classList.add('selected');
-                if(gw === 'jc') document.getElementById('wJC').classList.add('selected');
+                document.getElementById('w' + provider.toUpperCase()).classList.add('selected');
             }
         }
 
-        /* --- Deposit with Strict Limits (Rs. 300 - Rs. 50,000) --- */
-        function submitDeposit() {
-            let amt = parseFloat(document.getElementById('depAmountInput').value);
-            let txid = document.getElementById('depTxidInput').value.trim();
-
-            if(!selectedDepG) { alert("Please select EasyPaisa or JazzCash account!"); return; }
-            if(isNaN(amt) || !txid) { alert("Please fill all fields!"); return; }
-
-            // LIMIT ENFORCEMENT
-            if(amt < 300 || amt > 50000) {
-                alert("Error: Deposit Limit is Rs. 300 to Rs. 50,000 only!");
-                return;
+        /* --- WinGo 30s Countdown Clock --- */
+        let timerSeconds = 30;
+        let runningPeriod = 2026061410061;
+        setInterval(() => {
+            if(timerSeconds <= 0) {
+                timerSeconds = 30;
+                runningPeriod++;
+                document.getElementById('periodText').innerText = runningPeriod;
+            } else {
+                timerSeconds--;
             }
+            document.getElementById('timerText').innerText = '00:' + (timerSeconds < 10 ? '0' + timerSeconds : timerSeconds);
+        }, 1000);
 
-            balance += amt;
-            document.getElementById('mainBalance').innerText = balance.toFixed(2);
-            alert("Deposit Request Submitted! Rs. " + amt + " added successfully.");
-            closeFinanceModal('depositModal');
+        function executeBet(type) {
+            let userAmt = prompt("Enter Trading Stake Amount for " + type + " (Rs.):", "100");
+            if(!userAmt) return;
+            let stake = parseFloat(userAmt);
+            if(isNaN(stake) || stake <= 0) { alert("Invalid Operational Parameter."); return; }
+            if(runtimeBalance < stake) { alert("Execution Error: Insufficient ledger tokens!"); return; }
+            
+            runtimeBalance -= stake;
+            syncBalance();
+            alert(`Bet Placed on ${type} for Rs. ${stake} under processing code ${runningPeriod}`);
         }
 
-        /* --- Withdrawal with Strict Limits (Rs. 500 - Rs. 50,000) --- */
-        function submitWithdrawal() {
-            let amt = parseFloat(document.getElementById('witAmountInput').value);
-            let acc = document.getElementById('witAccountInput').value.trim();
-            let name = document.getElementById('witNameInput').value.trim();
+        /* --- Aviator Flight simulation Controller --- */
+        let flightActive = false;
+        let flightClock;
+        let currentMult = 1.00;
 
-            if(!selectedWitG) { alert("Please select withdrawal gateway!"); return; }
-            if(isNaN(amt) || !acc || !name) { alert("Please fill all details!"); return; }
+        function runAviatorEngine() {
+            let avStake = parseFloat(document.getElementById('avAmount').value);
+            if(isNaN(avStake) || avStake <= 0) { alert("Invalid Simulation Amount"); return; }
 
-            // LIMIT ENFORCEMENT
-            if(amt < 500 || amt > 50000) {
-                alert("Error: Withdrawal Limit is Rs. 500 to Rs. 50,000 only!");
-                return;
-            }
-            if(balance < amt) {
-                alert("Error: Insufficient balance to withdraw this amount!");
-                return;
-            }
+            if(!flightActive) {
+                if(runtimeBalance < avStake) { alert("Operational Error: Balance Deficit!"); return; }
+                runtimeBalance -= avStake;
+                syncBalance();
 
-            balance -= amt;
-            document.getElementById('mainBalance').innerText = balance.toFixed(2);
-            alert("Withdrawal request of Rs. " + amt + " submitted for " + name + ". Processed within 24 hours.");
-            closeFinanceModal('withdrawModal');
-        }
-    </script>
-</body>
-    </html>
-    
+                flightActive = true;
+                currentMult = 1.00;
+                document.getElementById('avEngineBtn').innerText = "Cash Out (1.00x)";
+                document.getElementById('avEngineBtn').style.background = "#2ecc71";
+
+                let crashPoint = (Math.random() * 5 + 1.02).toFixed(2);
+
+                flightClock = setInterval(() => {
+                    currentMult += 0.05;
+                    document.getElementById('avMultiplier').innerText = currentMult.toFixed(2) + 'x';
+                    document.getElementById('avPlane').style.transform = `translate(${currentMult * 20}px, -${currentMult * 12}px)`;
+
+                    if(document.getElementById('avEngineBtn').innerText.startsWith("Cash Out")) {
+                        document.getElementById('avEngineBtn').innerText = "Cash Out (" + currentMult.toFixed(2) + "x)";
+                    }
+
+                    if(currentMult >= crashPoint) {
+                        clearInterval(flightClock);
+                        flightActive = false;
+                        document.getElementById('avMultiplier').innerText = "Flew Away @ " + crashPoint + "x";
+                        document.getElementById('avEngineBtn').innerText = "Bet & Fly";
+                        document.getElementById('avEngineBtn').style.background = "#e74c3c";
+                    }
+                }, 100);
+            } else {
+                clearInterval(flightClock);
+                flightActive = false;
+                let cashoutYield = avStake * currentMult;
+                runtimeBalance += cashoutYield;
+                syncBalance();
+                alert("Flight Cashout Secure! Payout Added: Rs. " + cashoutYield.toFixed(2));
+                document.getElementById('avEngineBtn').innerText = "Bet & Fly";
+                document.getElem
